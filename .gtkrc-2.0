@@ -1,0 +1,8 @@
+style "user-font"
+{
+	font_name="Liberation Sans 9"
+}
+widget_class "*" style "user-font"
+gtk-font-name="Liberation Sans 9"
+
+gtk-key-theme-name = "Emacs"

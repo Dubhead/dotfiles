@@ -1,0 +1,35 @@
+; .skk - SKK config file	-*- emacs-lisp -*-
+
+(setq skk-rom-kana-rule-list
+  '(
+    ("ca" nil ("カ" . "か"))
+    ("ce" nil ("ケ" . "け"))
+    ("ci" nil ("キ" . "き"))
+    ("co" nil ("コ" . "こ"))
+    ("cu" nil ("ク" . "く"))
+    ("cya" nil ("キャ" . "きゃ"))
+    ("cye" nil ("キェ" . "きぇ"))
+    ("cyi" nil ("キィ" . "きぃ"))
+    ("cyo" nil ("キョ" . "きょ"))
+    ("cyu" nil ("キュ" . "きゅ"))
+    ("z " nil ("　" . "　"))	; z SPC for zenkaku space
+    (":" nil ":")
+    (";" nil ";")
+    ("@" nil "@")
+    ("?" nil "?")
+   )
+)
+
+; (setq skk-dcomp-activate t)
+(setq skk-auto-insert-paren t)
+(setq skk-check-okurigana-on-touroku 'ask)
+(setq skk-date-ad t)
+(setq skk-henkan-okuri-strictly t)
+(setq skk-henkan-show-candidates-keys '(?a ?o ?e ?u ?h ?t ?n))
+(setq skk-kakutei-early nil)
+(setq skk-keep-record nil)
+; (setq skk-large-jisyo "/usr/local/share/skk/SKK-JISYO.L")
+(setq skk-number-style nil)
+(setq skk-server-portnum 1178)
+
+; eof	vim:set syntax=lisp fenc=cp932:

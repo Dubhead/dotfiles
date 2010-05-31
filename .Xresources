@@ -1,0 +1,10 @@
+! Emacs
+!
+! disable XIM for Emacs
+Emacs.xnlLanguage:	C
+Emacs.useXIM:	false
+!
+Emacs.menuBar:	0
+Emacs.toolBar:	0
+
+! eof

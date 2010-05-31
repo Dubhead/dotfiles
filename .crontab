@@ -1,0 +1,6 @@
+# m h  dom mon dow   command
+25 12 * * *	/usr/bin/find /home/miura/.Trash -mtime +7 -delete
+# 25 12 * * *	/usr/bin/find /home/miura/.Trash -mtime +7 -exec /bin/rm -fr {} \;
+26 12 * * *	/usr/bin/trash-empty 7
+
+# eof

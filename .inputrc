@@ -1,0 +1,13 @@
+# .inputrc
+
+set convert-meta off
+set meta-flag on
+set input-meta on
+set output-meta on
+
+set blink-matching-paren on
+
+C-r: history-search-backward
+C-s: history-search-forward
+
+# eof

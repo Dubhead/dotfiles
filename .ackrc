@@ -1,0 +1,6 @@
+--color
+--type-set=d=.d
+--type-set=go=.go
+--type-set=scala=.scala
+--type-set=ooc=.ooc
+--type-set=pure=.pure
