@@ -2,6 +2,7 @@
 
 export EDITOR="/usr/bin/vim"
 # export LANG=ja_JP.UTF-8
+export LC_ALL=POSIX
 export LESS=-aij3qRsS
 export LESSHISTFILE=-
 export MANPATH="/usr/local/man:/usr/share/man"
