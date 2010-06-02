@@ -63,9 +63,9 @@ alias -g L='|/usr/bin/less'
 alias -g L2='2>&1|/usr/bin/less'
 # alias -g LV='|/usr/bin/lv'
 l () {
-        LANG=C /bin/ls -lhtAFG --color=always $* | /usr/bin/head -20
+        LANG=POSIX /bin/ls -lhtAFG --color=always $* | /usr/bin/head -20
 }
-alias ls='/bin/ls -FG --group-directories-first --color=auto'
+alias ls='LANG=POSIX /bin/ls -FG --group-directories-first --color=auto'
 alias man='LANG=C /usr/bin/man'
 alias myps='/bin/ps axo stat,ppid,pid,cmd 2>&1 | /usr/bin/less'
 orig () {
