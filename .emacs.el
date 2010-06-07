@@ -81,11 +81,13 @@
 
 (define-key emacs-lisp-mode-map "\C-c\C-c" 'emacs-lisp-byte-compile)
 
-(define-key view-mode-map "b" 'scroll-down)
-; (define-key view-mode-map "\C-b" 'scroll-down)
+(add-hook 'view-mode-hook
+	  '(lambda ()
+	     (define-key view-mode-map (kbd "b") 'scroll-down)
+	     (define-key view-mode-map (kbd "C-b") 'scroll-down)))
 
 (add-hook 'isearch-mode-hook
-      (lambda () (define-key isearch-mode-map "\C-h" 'isearch-delete-char)))
+	  (lambda () (define-key isearch-mode-map "\C-h" 'isearch-delete-char)))
 
 (global-highlight-changes-mode t)
 ; (add-hook 'after-save-hook 'highlight-changes-rotate-faces)
