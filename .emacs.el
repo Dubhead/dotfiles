@@ -68,6 +68,8 @@
       (set-selective-display (+ (current-column) 1)))))
 (global-set-key [?\C-6] 'bubble-buffer)
 (global-set-key [?\C-9] 'insert-parentheses)
+(global-set-key [?\C-,] 'backward-up-list)
+(global-set-key [?\C-.] 'down-list)
 
 ; dmacro
 (defconst *dmacro-key* [?\M-z] "繰り返し指定キー")
@@ -83,8 +85,7 @@
 
 (add-hook 'view-mode-hook
 	  '(lambda ()
-	     (define-key view-mode-map (kbd "b") 'scroll-down)
-	     (define-key view-mode-map (kbd "C-b") 'scroll-down)))
+	     (define-key view-mode-map (kbd "b") 'scroll-down)))
 
 (add-hook 'isearch-mode-hook
 	  (lambda () (define-key isearch-mode-map "\C-h" 'isearch-delete-char)))
