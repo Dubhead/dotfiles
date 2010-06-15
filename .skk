@@ -21,7 +21,7 @@
 )
 
 ; (setq skk-dcomp-activate t)
-(setq skk-auto-insert-paren t)
+; (setq skk-auto-insert-paren t)
 (setq skk-check-okurigana-on-touroku 'ask)
 (setq skk-date-ad t)
 (setq skk-henkan-okuri-strictly t)
