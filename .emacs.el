@@ -29,7 +29,7 @@
 
 ; highlight current line
 (require 'hl-line)
-(global-hl-line-mode t)
+(global-hl-line-mode 1)
 
 ; language
 (set-language-environment "UTF-8")
@@ -60,6 +60,7 @@
 (global-set-key [?\C-0] 'delete-window)
 (global-set-key [?\C-1] 'delete-other-windows)
 (global-set-key [?\C-2] 'split-window-vertically)
+(global-set-key [?\C-3] 'fit-window-to-buffer)
 (global-set-key [?\C-4]
  '(lambda ()
     (interactive)
@@ -126,6 +127,7 @@
  '(diff-switches "-u")
  '(frame-title-format (quote (buffer-file-name "%f - Emacs" ("%b - Emacs"))) t)
  '(global-font-lock-mode t nil (font-lock))
+ '(indicate-empty-lines t)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(line-move-visual nil)
