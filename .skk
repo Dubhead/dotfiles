@@ -26,10 +26,12 @@
 (setq skk-date-ad t)
 (setq skk-henkan-okuri-strictly t)
 (setq skk-henkan-show-candidates-keys '(?a ?o ?e ?u ?h ?t ?n))
+(setq skk-henkan-strict-okuri-precedence t)
 (setq skk-kakutei-early nil)
 (setq skk-keep-record nil)
 ; (setq skk-large-jisyo "/usr/local/share/skk/SKK-JISYO.L")
 (setq skk-number-style nil)
 (setq skk-server-portnum 1178)
+(setq skk-special-midashi-char-list '(?> ?<))
 
 ; eof	vim:set syntax=lisp fenc=cp932:
