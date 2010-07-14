@@ -34,4 +34,4 @@
 (setq skk-server-portnum 1178)
 (setq skk-special-midashi-char-list '(?> ?<))
 
-; eof	vim:set syntax=lisp fenc=cp932:
+; eof	vim:set syntax=lisp fenc=utf-8:
