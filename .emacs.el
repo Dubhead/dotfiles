@@ -32,7 +32,8 @@
 (global-hl-line-mode 1)
 
 ; language
-(set-language-environment "UTF-8")
+; (set-language-environment "UTF-8")
+(set-language-environment "Japanese")
 (prefer-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
@@ -44,36 +45,55 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 ; or: (defalias 'yes-or-no-p 'y-or-n-p)
 
-(global-set-key "\C-h" 'delete-backward-char)
-(global-set-key "\C-m" 'newline-and-indent)
-(global-set-key "\C-x\C-b" '(lambda () (interactive) (buffer-menu t)))
-(global-set-key "\C-z" 'scroll-down)
-(global-set-key "\M-/" 'hippie-expand)
-(global-set-key "\M-%" 'query-replace-regexp)
-(global-set-key "\M-n" 'forward-paragraph)
-(global-set-key "\M-p" 'backward-paragraph)
-(global-set-key "\M-[" 'highlight-changes-previous-change)
-(global-set-key "\M-]" 'highlight-changes-next-change)
-(global-set-key "\M-c" 'turn-on-wordcap)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "C-m") 'newline-and-indent)
+(global-set-key (kbd "C-x C-b") '(lambda () (interactive) (buffer-menu t)))
+(global-set-key (kbd "C-z") 'scroll-down)
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "M-%") 'query-replace-regexp)
+(global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-[") 'highlight-changes-previous-change)
+(global-set-key (kbd "M-]") 'highlight-changes-next-change)
+(global-set-key (kbd "M-c") 'turn-on-wordcap)
 
-(global-set-key [?\C--] 'other-window)
-(global-set-key [?\C-0] 'delete-window)
-(global-set-key [?\C-1] 'delete-other-windows)
-(global-set-key [?\C-2] 'split-window-vertically)
-(global-set-key [?\C-3] 'fit-window-to-buffer)
-(global-set-key [?\C-4]
+(global-set-key (kbd "C--") 'other-window)
+; (global-set-key (kbd "C-0") 'delete-window)
+;
+; (global-set-key (kbd "C-1") 'delete-other-windows)
+; (global-set-key [?\C-2] 'split-window-vertically)
+;
+; Split window if only one, close others if two or more.
+; Cursor stays in the current window with C-1, leaves with C-2.
+(global-set-key (kbd "C-1")
+		'(lambda ()
+		   (interactive)
+		   (if (one-window-p)
+		       (split-window-vertically)
+		     (delete-other-windows))))
+(global-set-key (kbd "C-2")
+		'(lambda ()
+		   (interactive)
+		   (if (one-window-p)
+		       (progn
+			 (split-window-vertically)
+			 (other-window 1))
+		     (delete-window))))
+;
+(global-set-key (kbd "C-3") 'shrink-window-if-larger-than-buffer)
+(global-set-key (kbd "C-4")		; toggle selective-display
  '(lambda ()
     (interactive)
     (if selective-display (set-selective-display nil)
       (back-to-indentation)
       (set-selective-display (+ (current-column) 1)))))
-(global-set-key [?\C-6] 'bubble-buffer)
-(global-set-key [?\C-9] 'insert-parentheses)
-(global-set-key [?\C-,] 'backward-up-list)
-(global-set-key [?\C-.] 'down-list)
+(global-set-key (kbd "C-6") 'bubble-buffer)
+(global-set-key (kbd "C-9") 'insert-parentheses)
+(global-set-key (kbd "C-,") 'backward-up-list)
+(global-set-key (kbd "C-.") 'down-list)
 
 ; dmacro
-(defconst *dmacro-key* [?\M-z] "繰り返し指定キー")
+(defconst *dmacro-key* (kbd "M-z") "繰り返し指定キー")
 (global-set-key *dmacro-key* 'dmacro-exec)
 
 ; bm.el
@@ -82,14 +102,14 @@
 (global-set-key (kbd "<S-f2>") 'bm-previous)
 (setq bm-highlight-style 'bm-highlight-only-fringe)
 
-(define-key emacs-lisp-mode-map "\C-c\C-c" 'emacs-lisp-byte-compile)
+(define-key emacs-lisp-mode-map (kbd "C-c C-c") 'emacs-lisp-byte-compile)
 
 (add-hook 'view-mode-hook
 	  '(lambda ()
 	     (define-key view-mode-map (kbd "b") 'scroll-down)))
 
 (add-hook 'isearch-mode-hook
-	  (lambda () (define-key isearch-mode-map "\C-h" 'isearch-delete-char)))
+	  (lambda () (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)))
 
 (global-highlight-changes-mode t)
 ; (add-hook 'after-save-hook 'highlight-changes-rotate-faces)
@@ -107,7 +127,7 @@
   (if mark-active			; (region-active-p) for XEmacs
       (kill-region (region-beginning) (region-end))
     (backward-kill-word arg)))
-(global-set-key "\C-w" 'my-ctrl-w)
+(global-set-key (kbd "C-w") 'my-ctrl-w)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -120,8 +140,6 @@
  '(c-default-style (quote ((java-mode . "java") (other . "python"))))
  '(case-fold-search nil)
  '(change-log-default-name "~/ChangeLog")
- '(current-language-environment "Japanese")
- '(default-indicate-empty-lines t t)
  '(default-input-method "japanese-skk")
  '(delete-selection-mode t nil (delsel))
  '(diff-switches "-u")
@@ -135,7 +153,6 @@
  '(menu-bar-mode nil)
  '(require-final-newline (quote ask))
  '(scroll-conservatively 100)
- '(scroll-preserve-screen-position t)
  '(show-paren-mode t nil (paren))
  '(show-paren-style (quote expression))
  '(show-trailing-whitespace t)
