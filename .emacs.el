@@ -63,7 +63,7 @@
 ; (global-set-key (kbd "C-1") 'delete-other-windows)
 ; (global-set-key [?\C-2] 'split-window-vertically)
 ;
-; Split window if only one, close others if two or more.
+; Split window if only one, close if two or more.
 ; Cursor stays in the current window with C-1, leaves with C-2.
 (global-set-key (kbd "C-1")
 		'(lambda ()
