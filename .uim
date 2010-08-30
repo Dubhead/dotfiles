@@ -1,6 +1,6 @@
 (define default-im-name 'skk)
 (require "japanese.scm")
-(define ja-rk-rule
+(define ja-rk-rule-basic
   (append '(
       ((("+") . ()) ("+" "+" "+"))
       ((("!") . ()) ("!" "!" "!"))
@@ -40,6 +40,8 @@
       ((("w" "y" "e"). ())("¤ñ" "¥ñ" "Žª"))
     )
     ja-rk-rule-basic))	; ja-rk-rule
+(ja-rk-rule-update)
+(define skk-ja-rk-rule (append ja-rk-rule-basic ja-rk-rule-additional))
 
 (define skk-egg-like-newline #t)
 
