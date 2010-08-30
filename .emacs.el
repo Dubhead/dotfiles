@@ -57,28 +57,29 @@
 (global-set-key (kbd "M-]") 'highlight-changes-next-change)
 (global-set-key (kbd "M-c") 'turn-on-wordcap)
 
-(global-set-key (kbd "C--") 'other-window)
-; (global-set-key (kbd "C-0") 'delete-window)
-;
-; (global-set-key (kbd "C-1") 'delete-other-windows)
-; (global-set-key [?\C-2] 'split-window-vertically)
-;
-; Split window if only one, close if two or more.
-; Cursor stays in the current window with C-1, leaves with C-2.
+(global-set-key (kbd "C--")
+ ; Jump to other window, splitting if necessary.
+ '(lambda ()
+    (interactive)
+    (if (one-window-p)
+	(split-window-vertically))
+    (other-window 1)))
+(global-set-key (kbd "C-0") 'delete-window)
 (global-set-key (kbd "C-1")
-		'(lambda ()
-		   (interactive)
-		   (if (one-window-p)
-		       (split-window-vertically)
-		     (delete-other-windows))))
-(global-set-key (kbd "C-2")
-		'(lambda ()
-		   (interactive)
-		   (if (one-window-p)
-		       (progn
-			 (split-window-vertically)
-			 (other-window 1))
-		     (delete-window))))
+ ; Split the current window, or close others.  Point stays in the current.
+ '(lambda ()
+    (interactive)
+    (if (one-window-p)
+	(split-window-vertically)
+      (delete-other-windows))))
+; (global-set-key (kbd "C-2")
+; 		'(lambda ()
+; 		   (interactive)
+; 		   (if (one-window-p)
+; 		       (progn
+; 			 (split-window-vertically)
+; 			 (other-window 1))
+; 		     (delete-window))))
 ;
 (global-set-key (kbd "C-3") 'shrink-window-if-larger-than-buffer)
 (global-set-key (kbd "C-4")		; toggle selective-display
