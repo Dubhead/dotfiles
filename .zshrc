@@ -63,7 +63,9 @@ alias -g L='|/usr/bin/less'
 alias -g L2='2>&1|/usr/bin/less'
 # alias -g LV='|/usr/bin/lv'
 l () {
-        LANG=POSIX /bin/ls -lhtAFG --color=always $* | /usr/bin/head -20
+        # LANG=POSIX /bin/ls -lhtAFG --color=always $* | /usr/bin/head -20
+        # LC_TIME=ja_JP.utf-8 /bin/ls -lhtAFG --color=always $* | /usr/bin/head -20
+        LC_ALL=POSIX /bin/ls -lhtAFG --time-style=long-iso --color=always $* | /usr/bin/head -20
 }
 alias ls='LANG=POSIX /bin/ls -FG --group-directories-first --color=auto'
 alias man='LANG=C /usr/bin/man'
