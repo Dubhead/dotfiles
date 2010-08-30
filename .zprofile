@@ -15,12 +15,8 @@ export TZ=Asia/Tokyo
 
 # Go Programming Language http://golang.org/doc/install.html
 export GOROOT=${HOME}/go
-export GOOS=linux
-export GOARCH=386
+# export GOOS=linux
+# export GOARCH=386
 export GOBIN=${HOME}/gobin
-
-# OOC programming language
-export ROCK_DIST=/usr/share/rock
-export OOC_LIBS=/usr/lib/ooc
 
 # eof
