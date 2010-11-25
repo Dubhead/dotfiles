@@ -51,7 +51,7 @@ set tags=./tags;
 set tildeop
 set viminfo=!,'0,\"0,@0,f0,h    " '!' for mru.vim
 set wildignore=*.o
-set wildmode=longest,list
+set wildmode=list:longest
 set winfixheight
 set nowrapscan
 
@@ -113,6 +113,10 @@ cnoremap <C-N> <Down>
 cnoremap <C-P> <Up>
 cnoremap <Esc><C-B> <S-Left>
 cnoremap <Esc><C-F> <S-Right>
+
+" Search open parens.
+nnoremap <silent> ) :<C-u>call search("\\((\\\\|\\[\\\\|{\\\\|<\\\\|「\\\\|『\\)\\zs")<CR>
+nnoremap <silent> ( :<C-u>call search("\\((\\\\|\\[\\\\|{\\\\|<\\\\|「\\\\|『\\)\\zs", 'b')<CR>
 
 """" plugins """"
 
@@ -204,12 +208,15 @@ let hs_allow_hash_operator = 1
 " autocmd BufNewFile,BufRead *.java compiler javac
 
 " ooc
-autocmd BufRead,BufNewFile *.ooc setfiletype ooc
+" autocmd BufRead,BufNewFile *.ooc setfiletype ooc
 
 " Pure
 autocmd BufRead,BufNewFile *.pure setfiletype pure
 
 " Nimrod
 " autocmd BufRead,BufNewFile *.nim setfiletype nimrod
+
+" Falcon
+autocmd BufRead,BufNewFile *.fal setfiletype falcon
 
 " eof

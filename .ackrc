@@ -4,3 +4,4 @@
 --type-set=scala=.scala
 --type-set=ooc=.ooc
 --type-set=pure=.pure
+--type-set=falcon=.fal

@@ -2,6 +2,7 @@
 
 export EDITOR="/usr/bin/vim"
 # export LANG=ja_JP.UTF-8
+unset LANGUAGE
 export LC_MESSAGES=C
 export LESS=-aij3qRsS
 export LESSHISTFILE=-
