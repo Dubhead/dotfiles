@@ -55,6 +55,17 @@ clear-screen-rehash() {
 zle -N clear-screen-rehash
 bindkey '^L' clear-screen-rehash
 
+# color scheme for man pages
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;34m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+# aliases and functions
+#
 alias date='/bin/date --rfc-3339=seconds'
 # alias em='/usr/local/bin/emacsclient'
 alias grep='/bin/grep --color=auto'
