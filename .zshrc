@@ -10,8 +10,8 @@ unfunction -m '*'
 
 autoload -U compinit zmv
 compinit
-
 zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 setopt autopushd pushdignoredups pushdminus pushdsilent
 setopt appendhistory histignoredups histignorespace
