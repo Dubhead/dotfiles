@@ -28,4 +28,7 @@ autocmd BufLeave * set nocursorline
 autocmd BufEnter * set cursorline
 highlight CursorLine guibg=gray80
 
+set colorcolumn=81
+highlight ColorColumn guibg=gray80
+
 " eof
