@@ -49,7 +49,7 @@ set noshowmode
 set suffixes=.o,.orig,.pyc,.pyo,.beam,.class,.exe,.8,.di
 set tags=./tags;
 set tildeop
-set viminfo=!,'0,\"0,@0,f0,h    " '!' for mru.vim
+set viminfo=!,'0,<0,@0,f0,h    " '!' for mru.vim
 set wildignore=*.o
 set wildmode=list:longest
 set winfixheight
