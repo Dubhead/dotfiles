@@ -20,12 +20,13 @@ set backspace=indent,eol,start
 " set backupdir=~/.vim_backup/,.,~/
 set backupdir=/tmp,.,~/
 set browsedir=buffer
+set cedit=<Esc>
 set cinoptions=:0,g0
 " set directory=c:\\tmp,.
 set directory=/tmp,.,~/
 " set grepprg=internal
-" set grepprg=/usr/bin/ack\ $*
-set grepprg=/usr/bin/ack\ --nocolor\ $*
+set grepprg=/usr/bin/ack\ -H\ --column\ --nocolor\ --nogroup
+set grepformat=%f:%l:%c:%m
 set history=50
 set hidden
 set hlsearch
@@ -36,6 +37,7 @@ set linebreak
 set modeline
 set nrformats=hex,alpha
 set noruler
+" set scrolloff=2
 set secure
 set sessionoptions=options,curdir,winpos,resize,winsize
 set shiftround
