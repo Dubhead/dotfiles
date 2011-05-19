@@ -93,7 +93,7 @@ if [ -x /usr/bin/trash-put ]; then alias rm='/usr/bin/trash-put';
 else alias rm='/bin/mv --backup=numbered --target-directory=${HOME}/.Trash/';
 fi
 alias RM='/bin/rm -rf'
-if [ -x /usr/bin/inotail ]; then alias tail='/usr/bin/inotail'; fi
+alias sudo='/usr/bin/sudo -E '	# See 'alias' in zshbuiltins for the space.
 
 # site-locals
 if [ -f ~/.zsh.local ]; then source ~/.zsh.local; fi
