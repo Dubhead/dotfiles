@@ -98,6 +98,9 @@ imap <C-B> {<ESC>:s/\S\zs\s*\%#/ /e<CR>:silent noh<CR>A<CR>}<ESC>O<C-T>
 inoremap <M-u> <Esc>gUiw`]a
 inoremap <M-c> <ESC>bgUllgue`^a
 
+" do :grep for the word under cursor
+nnoremap <F8> :grep <cword><CR>
+
 " Save all modified, and run make.
 map <F9> :silent wall<CR>\|:make<CR>
 
@@ -139,10 +142,6 @@ let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
 " let MRU_Window_Height = 16
 " let MRU_Use_Current_Window = 1
 " let MRU_Auto_Close = 0
-
-" diffchanges.vim http://www.vim.org/scripts/script.php?script_id=2158
-nmap <F6> <Plug>DiffChangesDiffToggle
-nmap <F7> <Plug>DiffChangesPatchToggle
 
 " mark_tools.vim
 " http://www.vim.org/scripts/script.php?script_id=2929
