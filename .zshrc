@@ -88,6 +88,8 @@ orig () {
                 /bin/chmod 0444 ${i}.orig
         done
 }
+# mytime: user time, system time, real time, and maximum memory usage
+alias mytime="/usr/bin/time -f '%Uu %Ss %er %MkB %C'"
 alias pstree='/usr/bin/pstree -paUl'
 if [ -x /usr/bin/trash-put ]; then alias rm='/usr/bin/trash-put';
 else alias rm='/bin/mv --backup=numbered --target-directory=${HOME}/.Trash/';
