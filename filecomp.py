@@ -15,6 +15,6 @@ for f in sorted(glob.glob('*') + glob.glob('.*')):
         continue
     # print(f)
     dotfile_in_home = os.path.join(HOME, f)
-    subprocess.call(['diff', '-u', dotfile_in_home, f])
+    subprocess.call(['diff', '-u', f, dotfile_in_home])
 
 # eof
