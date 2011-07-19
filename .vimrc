@@ -99,7 +99,7 @@ inoremap <M-u> <Esc>gUiw`]a
 inoremap <M-c> <ESC>bgUllgue`^a
 
 " do :grep for the word under cursor
-nnoremap <F8> :grep <cword><CR>
+nnoremap <F8> :grep -w <cword><CR>
 
 " Save all modified, and run make.
 map <F9> :silent wall<CR>\|:make<CR>
@@ -135,6 +135,9 @@ let g:qb_hotkey = "_"
 " taglist.vim
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 " let Tlist_Inc_Winwidth = 0
+
+" tagbar.vim
+let g:tagbar_left = 1
 
 " mru.vim
 let MRU_Max_Entries = 30
