@@ -126,7 +126,7 @@ nnoremap <silent> ( :<C-u>call search("\\((\\\\|\\[\\\\|{\\\\|<\\\\|「\\\\|『\
 """" plugins """"
 
 " manpage viewer: See :help Man
-runtime! ftplugin/man.vim
+runtime ftplugin/man.vim
 map K <Leader>K
 
 " QuickBuf http://www.vim.org/scripts/download_script.php?src_id=7198
