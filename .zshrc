@@ -55,6 +55,12 @@ clear-screen-rehash() {
 zle -N clear-screen-rehash
 bindkey '^L' clear-screen-rehash
 
+# Only lines >= 4 chars (including newline) are recorded to .histfile .
+# See man 1 zshmisc for zshaddhistory.
+zshaddhistory() {
+    [[ ${#1} -ge 4 ]]
+}
+
 # color scheme for man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;34m'
