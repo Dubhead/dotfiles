@@ -40,8 +40,6 @@
 (set-clipboard-coding-system 'utf-8-unix)
 (set-selection-coding-system 'utf-8-unix)
 
-(blink-cursor-mode 0)
-
 (fset 'yes-or-no-p 'y-or-n-p)
 ; or: (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -89,6 +87,13 @@
       (back-to-indentation)
       (set-selective-display (+ (current-column) 1)))))
 (global-set-key (kbd "C-6") 'bubble-buffer)
+(global-set-key (kbd "C-7")		; narrow-in-indirect-buffer
+		'(lambda (start end)
+		   (interactive "r")
+		   (clone-indirect-buffer nil t)
+		   (narrow-to-region start end)
+		   (goto-char (point-min))
+		   (keyboard-quit)))
 (global-set-key (kbd "C-9") 'insert-parentheses)
 (global-set-key (kbd "C-,") 'backward-up-list)
 (global-set-key (kbd "C-.") 'down-list)
@@ -135,8 +140,10 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(auto-image-file-mode t)
  '(backup-directory-alist (quote (("." . "/tmp"))))
  '(backward-delete-char-untabify-method nil)
+ '(blink-cursor-mode nil)
  '(c-basic-offset 4)
  '(c-default-style (quote ((java-mode . "java") (other . "python"))))
  '(case-fold-search nil)
