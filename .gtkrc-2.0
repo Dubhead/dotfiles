@@ -5,4 +5,5 @@ style "user-font"
 widget_class "*" style "user-font"
 gtk-font-name="Liberation Sans 9"
 
-gtk-key-theme-name = "Emacs"
+# gtk-key-theme-name = "Emacs"
+include "/usr/share/themes/Emacs/gtk-2.0-key/gtkrc"

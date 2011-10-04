@@ -1,12 +1,18 @@
 # ~/.zprofile
 
+# export MANPATH="/usr/local/man:/usr/share/man"
+typeset -U manpath
+manpath=(
+    /usr/local/share/man(N-/)
+    /usr/local/man(N-/)
+    /usr/share/man(N-/))
+
 export EDITOR="/usr/bin/vim"
 # export LANG=ja_JP.UTF-8
 unset LANGUAGE
 export LC_MESSAGES=C
 export LESS=-aij3qRsS
 export LESSHISTFILE=-
-export MANPATH="/usr/local/man:/usr/share/man"
 export PAGER=/usr/bin/less
 export SKK_JISYO=/usr/share/skk/SKK-JISYO.L
 # export SKKSERV=/usr/sbin/yaskkserv_normal
