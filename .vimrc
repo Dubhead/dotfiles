@@ -21,9 +21,11 @@ set backspace=indent,eol,start
 set backupdir=/tmp,.,~/
 set browsedir=buffer
 set cedit=<Esc>
-set cinoptions=:0,g0
+set cinoptions=:0,l1,g0,N-s,(s
 " set directory=c:\\tmp,.
+set clipboard+=unnamed
 set directory=/tmp,.,~/
+set nofoldenable
 " set grepprg=internal
 set grepprg=/usr/bin/ack\ -H\ --column\ --nocolor\ --nogroup
 set grepformat=%f:%l:%c:%m
@@ -82,7 +84,7 @@ match RedundantSpaces /\s\+$\| \+\ze\t/
 " Highlight 'number' column.
 highlight LineNr term=underline ctermbg=3 ctermfg=4 guifg=blue guibg=yellow
 
-"""" key bindings """"
+"""" maps """"
 
 " Toggle read-only for local buffer.
 map <C-Q> :silent setl invreadonly<CR>\|:setl readonly?<CR>
@@ -92,7 +94,7 @@ noremap <C-L> :noh<CR>:lcd %:p:h<CR><C-L>
 
 " B for braces
 " imap <C-B> {<CR>}<ESC>O<C-T>
-imap <C-B> {<ESC>:s/\S\zs\s*\%#/ /e<CR>:silent noh<CR>A<CR>}<ESC>O<C-T>
+imap <C-B> <END>{<ESC>:s/\S\zs\s*\%#/ /e<CR>:silent noh<CR>A<CR>}<ESC>O<C-T>
 
 " make the last word UPPERCASE or Camelcase.  See :help gU
 inoremap <M-u> <Esc>gUiw`]a
@@ -108,6 +110,10 @@ map <F9> :silent wall<CR>\|:make<CR>
 map <C-N> :cnext<CR>
 map <C-P> :cprev<CR>
 
+" Alt-BackSpace to delete last word
+inoremap <M-BS> <C-W>
+noremap <M-BS> db
+
 " taken from :help emacs-keys
 cnoremap <C-A> <Home>
 cnoremap <C-B> <Left>
@@ -122,6 +128,14 @@ cnoremap <Esc><C-F> <S-Right>
 " Search open parens.
 nnoremap <silent> ) :<C-u>call search("\\((\\\\|\\[\\\\|{\\\\|<\\\\|「\\\\|『\\)\\zs")<CR>
 nnoremap <silent> ( :<C-u>call search("\\((\\\\|\\[\\\\|{\\\\|<\\\\|「\\\\|『\\)\\zs", 'b')<CR>
+
+" Change currend word to yanked text.
+nnoremap <silent> cy ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+vnoremap <silent> cy c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+
+" Write file that I don't own.
+cmap w!! %!sudo tee > /dev/null %
 
 """" plugins """"
 
@@ -168,6 +182,16 @@ nmap <S-C-F2> <Plug>MarksLoc
 
 " filetype indent off
 filetype plugin off
+
+" C and C++
+autocmd FileType c,cpp imap <TAB> `<C-]>
+autocmd FileType c,cpp inorea f` for ()<LEFT>
+autocmd FileType c,cpp inorea i` if ()<LEFT>
+autocmd FileType c,cpp inorea in` #include <
+autocmd FileType c,cpp inorea r` return;<LEFT>
+autocmd FileType c,cpp inorea w` while ()<LEFT>
+"
+autocmd FileType cpp abbr cl` class <CR>{<CR>public:<CR>private:<CR>};<UP><UP><UP><UP><END>
 
 " Python
 autocmd FileType python setl expandtab
