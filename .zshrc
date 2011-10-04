@@ -18,6 +18,7 @@ setopt appendhistory histignoredups histignorespace
 setopt listpacked magicequalsubst
 setopt markdirs cshnullglob
 setopt printeightbit
+setopt longlistjobs
 unsetopt autoremoveslash rmstarsilent
 ulimit -c 0
 
@@ -26,6 +27,8 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 WORDCHARS="${WORDCHARS:s#/#}|"
+
+REPORTTIME=3
 
 if [[ $DISPLAY == ":0.0" ]]; then
         # chpwd () { print -Pn "\e]0;%3~ - %m - mlterm\a"}
@@ -74,7 +77,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 #
 alias date='/bin/date --rfc-3339=seconds'
 # alias em='/usr/local/bin/emacsclient'
-alias grep='/bin/grep --color=auto'
+alias grep='/bin/grep --color=auto --binary-files=without-match --directories=recurse --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg'
 alias gvimrem='/usr/bin/gvim --remote-silent'
 alias -g L='|/usr/bin/less'
 alias -g L2='2>&1|/usr/bin/less'
