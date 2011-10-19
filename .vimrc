@@ -93,8 +93,7 @@ map <C-Q> :silent setl invreadonly<CR>\|:setl readonly?<CR>
 noremap <C-L> :noh<CR>:lcd %:p:h<CR><C-L>
 
 " B for braces
-" imap <C-B> {<CR>}<ESC>O<C-T>
-imap <C-B> <END>{<ESC>:s/\S\zs\s*\%#/ /e<CR>:silent noh<CR>A<CR>}<ESC>O<C-T>
+inoremap <silent> <C-b> <ESC>:call setline(".", substitute(getline("."), "\\s*$", " {", ""))<CR>o<CR>}<UP><C-T>
 
 " make the last word UPPERCASE or Camelcase.  See :help gU
 inoremap <M-u> <Esc>gUiw`]a
@@ -184,14 +183,23 @@ nmap <S-C-F2> <Plug>MarksLoc
 filetype plugin off
 
 " C and C++
-autocmd FileType c,cpp imap <TAB> `<C-]>
-autocmd FileType c,cpp inorea f` for ()<LEFT>
-autocmd FileType c,cpp inorea i` if ()<LEFT>
-autocmd FileType c,cpp inorea in` #include <
-autocmd FileType c,cpp inorea r` return;<LEFT>
-autocmd FileType c,cpp inorea w` while ()<LEFT>
+autocmd FileType c,cpp imap <TAB> _EXPAND_ME<C-]>
+autocmd FileType c,cpp inorea c_EXPAND_ME const
+autocmd FileType c,cpp inorea f_EXPAND_ME for ()<LEFT>
+autocmd FileType c,cpp inorea i_EXPAND_ME if ()<LEFT>
+autocmd FileType c,cpp inorea il_EXPAND_ME #include ""<LEFT>
+autocmd FileType c,cpp inorea in_EXPAND_ME #include <><LEFT>
+autocmd FileType c,cpp inorea r_EXPAND_ME return;<LEFT>
+autocmd FileType c,cpp inorea w_EXPAND_ME while ()<LEFT>
 "
-autocmd FileType cpp abbr cl` class <CR>{<CR>public:<CR>private:<CR>};<UP><UP><UP><UP><END>
+autocmd FileType cpp inorea b_EXPAND_ME begin(
+autocmd FileType cpp inorea cl_EXPAND_ME class <CR>{<CR>public:<CR>private:<CR>};<UP><UP><UP><UP><END>
+autocmd FileType cpp inorea e_EXPAND_ME end(
+autocmd FileType cpp inorea map_EXPAND_ME std::map<
+autocmd FileType cpp inorea s_EXPAND_ME std::
+autocmd FileType cpp inorea str_EXPAND_ME std::string
+autocmd FileType cpp inorea t_EXPAND_ME try<CR>catch () {<CR>}<UP><UP><END>
+autocmd FileType cpp inorea vec_EXPAND_ME std::vector<
 
 " Python
 autocmd FileType python setl expandtab
