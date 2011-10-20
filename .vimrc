@@ -93,7 +93,7 @@ map <C-Q> :silent setl invreadonly<CR>\|:setl readonly?<CR>
 noremap <C-L> :noh<CR>:lcd %:p:h<CR><C-L>
 
 " B for braces
-inoremap <silent> <C-b> <ESC>:call setline(".", substitute(getline("."), "\\s*$", " {", ""))<CR>o<CR>}<UP><C-T>
+inoremap <silent> <C-B> <END>{<ESC>:call setline(".", substitute(getline("."), "\\S\\zs\\s*\\%#", " ", ""))<CR>o}<ESC>O<C-T>
 
 " make the last word UPPERCASE or Camelcase.  See :help gU
 inoremap <M-u> <Esc>gUiw`]a
@@ -195,6 +195,7 @@ autocmd FileType c,cpp inorea w_EXPAND_ME while ()<LEFT>
 autocmd FileType cpp inorea b_EXPAND_ME begin(
 autocmd FileType cpp inorea cl_EXPAND_ME class <CR>{<CR>public:<CR>private:<CR>};<UP><UP><UP><UP><END>
 autocmd FileType cpp inorea e_EXPAND_ME end(
+autocmd FileType cpp inorea it_EXPAND_ME iterator<SPACE>
 autocmd FileType cpp inorea map_EXPAND_ME std::map<
 autocmd FileType cpp inorea s_EXPAND_ME std::
 autocmd FileType cpp inorea str_EXPAND_ME std::string
@@ -210,12 +211,12 @@ autocmd BufRead,BufNewFile *.go setfiletype go
 autocmd FileType go setl noexpandtab formatprg=$GOBIN/gofmt makeprg=$GOBIN/8g\ % shiftwidth=8
 
 " Haskell
-let hs_highlight_delimiters = 1
-let hs_highlight_boolean = 1
-let hs_highlight_types = 1
-let hs_highlight_more_types = 1
-let hs_highlight_debug = 1
-let hs_allow_hash_operator = 1
+" let hs_highlight_delimiters = 1
+" let hs_highlight_boolean = 1
+" let hs_highlight_types = 1
+" let hs_highlight_more_types = 1
+" let hs_highlight_debug = 1
+" let hs_allow_hash_operator = 1
 
 " Vala http://live.gnome.org/Vala/Vim
 " autocmd BufRead *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
