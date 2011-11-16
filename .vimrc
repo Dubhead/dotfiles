@@ -26,6 +26,7 @@ set cinoptions=:0,l1,g0,N-s,(s
 set clipboard+=unnamed
 set directory=/tmp,.,~/
 set nofoldenable
+set formatoptions=
 " set grepprg=internal
 set grepprg=/usr/bin/ack\ -H\ --column\ --nocolor\ --nogroup
 set grepformat=%f:%l:%c:%m
@@ -93,7 +94,8 @@ map <C-Q> :silent setl invreadonly<CR>\|:setl readonly?<CR>
 noremap <C-L> :noh<CR>:lcd %:p:h<CR><C-L>
 
 " B for braces
-inoremap <silent> <C-B> <END>{<ESC>:call setline(".", substitute(getline("."), "\\S\\zs\\s*\\%#", " ", ""))<CR>o}<ESC>O<C-T>
+" inoremap <silent> <C-B> <END> {<ESC>:call setline(".", substitute(getline("."), "\\S\\zs\\s*\\%#", " ", ""))<CR>o}<ESC>O<C-T>
+inoremap <silent> <C-B> <END>{<ESC>:call setline(".", substitute(getline("."), "\\S\\zs\\s*{", " {", ""))<CR>o}<ESC>O<C-T>
 
 " make the last word UPPERCASE or Camelcase.  See :help gU
 inoremap <M-u> <Esc>gUiw`]a
@@ -183,24 +185,31 @@ nmap <S-C-F2> <Plug>MarksLoc
 filetype plugin off
 
 " C and C++
-autocmd FileType c,cpp imap <TAB> _EXPAND_ME<C-]>
-autocmd FileType c,cpp inorea c_EXPAND_ME const
-autocmd FileType c,cpp inorea f_EXPAND_ME for ()<LEFT>
-autocmd FileType c,cpp inorea i_EXPAND_ME if ()<LEFT>
-autocmd FileType c,cpp inorea il_EXPAND_ME #include ""<LEFT>
-autocmd FileType c,cpp inorea in_EXPAND_ME #include <><LEFT>
-autocmd FileType c,cpp inorea r_EXPAND_ME return;<LEFT>
-autocmd FileType c,cpp inorea w_EXPAND_ME while ()<LEFT>
+autocmd FileType c,cpp imap <TAB> _EXPAND_<C-]>
+autocmd FileType c,cpp inorea c_EXPAND_ const
+autocmd FileType c,cpp inorea f_EXPAND_ for ()<LEFT>
+autocmd FileType c,cpp inorea i_EXPAND_ if ()<LEFT>
+autocmd FileType c,cpp inorea il_EXPAND_ #include ""<LEFT>
+autocmd FileType c,cpp inorea in_EXPAND_ #include <><LEFT>
+autocmd FileType c,cpp inorea r_EXPAND_ return;<LEFT>
+autocmd FileType c,cpp inorea w_EXPAND_ while ()<LEFT>
 "
-autocmd FileType cpp inorea b_EXPAND_ME begin(
-autocmd FileType cpp inorea cl_EXPAND_ME class <CR>{<CR>public:<CR>private:<CR>};<UP><UP><UP><UP><END>
-autocmd FileType cpp inorea e_EXPAND_ME end(
-autocmd FileType cpp inorea it_EXPAND_ME iterator<SPACE>
-autocmd FileType cpp inorea map_EXPAND_ME std::map<
-autocmd FileType cpp inorea s_EXPAND_ME std::
-autocmd FileType cpp inorea str_EXPAND_ME std::string
-autocmd FileType cpp inorea t_EXPAND_ME try<CR>catch () {<CR>}<UP><UP><END>
-autocmd FileType cpp inorea vec_EXPAND_ME std::vector<
+autocmd FileType cpp inorea a_EXPAND_ auto<SPACE>
+autocmd FileType cpp inorea b_EXPAND_ begin(
+" autocmd FileType cpp inorea impl_EXPAND_ class CLASSNAME::Impl<CR>{<CR>public:<CR>};<CR><CR>CLASSNAME::CLASSNAME()<CR><C-T>: pimpl(new Impl())<CR><C-D>{<CR>}<CR>
+autocmd FileType cpp inorea impl_EXPAND_ class CLASSNAME::Impl<CR>{<CR>public:<CR>};<CR><CR>CLASSNAME::CLASSNAME() : pimpl(new Impl()) {}<CR>
+" autocmd FileType cpp inorea cl_EXPAND_ class <CR>{<CR>public:<CR>private:<CR>};<UP><UP><UP><UP><END>
+autocmd FileType cpp inorea cl_EXPAND_ class <CR>{<CR>public:<CR><C-T>CLASSNAME();<CR>~CLASSNAME() = default;<CR><C-D>private:<CR><C-T>class Impl;<CR>std::unique_ptr<Impl> pimpl;<CR><C-D>};<UP><UP><UP><UP><UP><UP><UP><UP><END>
+autocmd FileType cpp inorea e_EXPAND_ end(
+autocmd FileType cpp inorea it_EXPAND_ iterator<SPACE>
+autocmd FileType cpp inorea map_EXPAND_ std::map<
+autocmd FileType cpp inorea ms_EXPAND_ make_shared<>();<LEFT><LEFT><LEFT><LEFT>
+autocmd FileType cpp inorea s_EXPAND_ std::
+autocmd FileType cpp inorea sp_EXPAND_ shared_ptr<
+autocmd FileType cpp inorea str_EXPAND_ std::string
+autocmd FileType cpp inorea t_EXPAND_ try<CR>catch () {<CR>}<UP><UP><END>
+autocmd FileType cpp inorea up_EXPAND_ unique_ptr<
+autocmd FileType cpp inorea vec_EXPAND_ std::vector<
 
 " Python
 autocmd FileType python setl expandtab
