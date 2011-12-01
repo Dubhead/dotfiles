@@ -87,6 +87,10 @@ highlight LineNr term=underline ctermbg=3 ctermfg=4 guifg=blue guibg=yellow
 
 """" maps """"
 
+" "very magic" regular expressions
+nnoremap / /\v
+vnoremap / /\v
+
 " Toggle read-only for local buffer.
 map <C-Q> :silent setl invreadonly<CR>\|:setl readonly?<CR>
 
@@ -135,14 +139,14 @@ nnoremap <silent> cy ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 vnoremap <silent> cy c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 
-" Write file that I don't own.
-cmap w!! %!sudo tee > /dev/null %
+" split and join
+nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zpJk:s/\v +$//<cr>:noh<cr>j^
 
 """" plugins """"
 
 " manpage viewer: See :help Man
 runtime ftplugin/man.vim
-map K <Leader>K
+" map K <Leader>K
 
 " QuickBuf http://www.vim.org/scripts/download_script.php?src_id=7198
 let g:qb_hotkey = "_"
@@ -196,10 +200,8 @@ autocmd FileType c,cpp inorea w_EXPAND_ while ()<LEFT>
 "
 autocmd FileType cpp inorea a_EXPAND_ auto<SPACE>
 autocmd FileType cpp inorea b_EXPAND_ begin(
-" autocmd FileType cpp inorea impl_EXPAND_ class CLASSNAME::Impl<CR>{<CR>public:<CR>};<CR><CR>CLASSNAME::CLASSNAME()<CR><C-T>: pimpl(new Impl())<CR><C-D>{<CR>}<CR>
-autocmd FileType cpp inorea impl_EXPAND_ class CLASSNAME::Impl<CR>{<CR>public:<CR>};<CR><CR>CLASSNAME::CLASSNAME() : pimpl(new Impl()) {}<CR>
-" autocmd FileType cpp inorea cl_EXPAND_ class <CR>{<CR>public:<CR>private:<CR>};<UP><UP><UP><UP><END>
-autocmd FileType cpp inorea cl_EXPAND_ class <CR>{<CR>public:<CR><C-T>CLASSNAME();<CR>~CLASSNAME() = default;<CR><C-D>private:<CR><C-T>class Impl;<CR>std::unique_ptr<Impl> pimpl;<CR><C-D>};<UP><UP><UP><UP><UP><UP><UP><UP><END>
+autocmd FileType cpp inorea impl_EXPAND_ class CLASSNAME::Impl<CR>{<CR>public:<CR><C-T>Impl(CLASSNAME* parent);<CR>~Impl() = default;<CR><C-D>};<CR><CR>CLASSNAME::Impl::Impl(CLASSNAME* parent)<CR>{<CR>}<CR><CR>CLASSNAME::CLASSNAME() : pimpl(new Impl()) {}<CR>CLASSNAME::~CLASSNAME() = default;
+autocmd FileType cpp inorea cl_EXPAND_ #pragma once<CR><CR>#include <memory><CR><CR>class <CR>{<CR>public:<CR><C-T>CLASSNAME();<CR>~CLASSNAME();<CR><C-D>private:<CR><C-T>class Impl;<CR>std::unique_ptr<Impl> pimpl;<CR><C-D>};<UP><UP><UP><UP><UP><UP><UP><UP><END>
 autocmd FileType cpp inorea e_EXPAND_ end(
 autocmd FileType cpp inorea it_EXPAND_ iterator<SPACE>
 autocmd FileType cpp inorea map_EXPAND_ std::map<
