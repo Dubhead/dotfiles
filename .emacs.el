@@ -54,6 +54,7 @@
 (global-set-key (kbd "M-[") 'highlight-changes-previous-change)
 (global-set-key (kbd "M-]") 'highlight-changes-next-change)
 (global-set-key (kbd "M-c") 'turn-on-wordcap)
+(global-set-key (kbd "M-o") '(lambda () (interactive) (join-line t)))
 
 (global-set-key (kbd "C--")
  ; Jump to other window, splitting if necessary.
@@ -178,7 +179,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Liberation Sans"))))
+ '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 88 :width normal :foundry "unknown" :family "Liberation Sans"))))
  '(highlight-changes ((((class color)) (:background "LightCyan1"))))
  '(highlight-changes-delete ((((class color)) (:background "LightCyan1" :underline t)))))
 
