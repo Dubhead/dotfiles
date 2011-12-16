@@ -173,6 +173,8 @@ nmap <S-F2> <Plug>PrevMarkPos
 nmap <S-C-F2> <Plug>MarksLoc
 " let toggle_marks_wrap_search = -1
 
+"""" hooks """"
+
 " always cd to the directory where the current file is at
 "
 " This is enough if you never edit network files:
@@ -182,6 +184,9 @@ nmap <S-C-F2> <Plug>MarksLoc
 " autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]://" | silent! lcd %:p:h | endif
 "
 " This is obsolete in ver6.2 -- use new option 'autochdir'.
+
+autocmd QuickFixCmdPost [^l]* nested cwindow 5
+autocmd QuickFixCmdPost l*    nested lwindow 5
 
 """" filetypes """"
 
@@ -195,23 +200,20 @@ autocmd FileType c,cpp inorea f_EXPAND_ for ()<LEFT>
 autocmd FileType c,cpp inorea i_EXPAND_ if ()<LEFT>
 autocmd FileType c,cpp inorea il_EXPAND_ #include ""<LEFT>
 autocmd FileType c,cpp inorea in_EXPAND_ #include <><LEFT>
-autocmd FileType c,cpp inorea r_EXPAND_ return;<LEFT>
+autocmd FileType c,cpp inorea r_EXPAND_ return
 autocmd FileType c,cpp inorea w_EXPAND_ while ()<LEFT>
 "
 autocmd FileType cpp inorea a_EXPAND_ auto<SPACE>
-autocmd FileType cpp inorea b_EXPAND_ begin(
+" autocmd FileType cpp inorea cl_EXPAND_ #pragma once<CR><CR>#include <memory><CR><CR>class <CR>{<CR>public:<CR><C-T>CLASSNAME();<CR>virtual ~CLASSNAME();<CR><C-D>private:<CR><C-T>class Impl;<CR>std::unique_ptr<Impl> pimpl;<CR><C-D>};<UP><UP><UP><UP><UP><UP><UP><UP><END>
+autocmd FileType cpp inorea cl_EXPAND_ #pragma once<CR><CR>#include <memory><CR><CR>class <CR>{<CR>public:<CR><C-T>CLASSNAME();<CR>virtual ~CLASSNAME();<CR><C-D>private:<CR><C-T>CLASSNAME(CLASSNAME const&) = delete;<CR>CLASSNAME(CLASSNAME&&) = delete;<CR>CLASSNAME& operator=(CLASSNAME const&) = delete;<CR>CLASSNAME& operator=(CLASSNAME&&) = delete;<CR><CR>class Impl;<CR>std::unique_ptr<Impl> pimpl;<CR><C-D>};<UP><UP><UP><UP><UP><UP><UP><UP><UP><UP><UP><UP><UP><END>
 autocmd FileType cpp inorea impl_EXPAND_ class CLASSNAME::Impl<CR>{<CR>public:<CR><C-T>Impl(CLASSNAME* parent);<CR>~Impl() = default;<CR><C-D>};<CR><CR>CLASSNAME::Impl::Impl(CLASSNAME* parent)<CR>{<CR>}<CR><CR>CLASSNAME::CLASSNAME() : pimpl(new Impl()) {}<CR>CLASSNAME::~CLASSNAME() = default;
-autocmd FileType cpp inorea cl_EXPAND_ #pragma once<CR><CR>#include <memory><CR><CR>class <CR>{<CR>public:<CR><C-T>CLASSNAME();<CR>~CLASSNAME();<CR><C-D>private:<CR><C-T>class Impl;<CR>std::unique_ptr<Impl> pimpl;<CR><C-D>};<UP><UP><UP><UP><UP><UP><UP><UP><END>
-autocmd FileType cpp inorea e_EXPAND_ end(
-autocmd FileType cpp inorea it_EXPAND_ iterator<SPACE>
-autocmd FileType cpp inorea map_EXPAND_ std::map<
+autocmd FileType cpp inorea m_EXPAND_ map<
 autocmd FileType cpp inorea ms_EXPAND_ make_shared<>();<LEFT><LEFT><LEFT><LEFT>
 autocmd FileType cpp inorea s_EXPAND_ std::
-autocmd FileType cpp inorea sp_EXPAND_ shared_ptr<
-autocmd FileType cpp inorea str_EXPAND_ std::string
-autocmd FileType cpp inorea t_EXPAND_ try<CR>catch () {<CR>}<UP><UP><END>
-autocmd FileType cpp inorea up_EXPAND_ unique_ptr<
-autocmd FileType cpp inorea vec_EXPAND_ std::vector<
+autocmd FileType cpp inorea sh_EXPAND_ shared_ptr<
+autocmd FileType cpp inorea st_EXPAND_ string
+autocmd FileType cpp inorea un_EXPAND_ unique_ptr<
+autocmd FileType cpp inorea v_EXPAND_ vector<
 
 " Python
 autocmd FileType python setl expandtab
