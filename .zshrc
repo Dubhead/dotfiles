@@ -75,8 +75,10 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # aliases and functions
 #
+alias clang++11='/usr/local/bin/clang++ -std=c++11'
 alias date='/bin/date --rfc-3339=seconds'
 # alias em='/usr/local/bin/emacsclient'
+alias g++11='/usr/bin/g++ -std=c++0x'
 alias grep='/bin/grep --color=auto --binary-files=without-match --directories=recurse --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg'
 alias gvimrem='/usr/bin/gvim --remote-silent'
 alias -g L='|/usr/bin/less'
