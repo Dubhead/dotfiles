@@ -55,7 +55,7 @@ set suffixes=.o,.orig,.pyc,.pyo,.beam,.class,.exe,.8,.di
 set tags=./tags;
 set tildeop
 set viminfo=!,'0,<0,@0,f0,h    " '!' for mru.vim
-set wildignore=*.o
+set wildignore+=*.o
 set wildmode=list:longest
 set winfixheight
 set nowrapscan
@@ -86,10 +86,6 @@ match RedundantSpaces /\s\+$\| \+\ze\t/
 highlight LineNr term=underline ctermbg=3 ctermfg=4 guifg=blue guibg=yellow
 
 """" maps """"
-
-" "very magic" regular expressions
-nnoremap / /\v
-vnoremap / /\v
 
 " Toggle read-only for local buffer.
 map <C-Q> :silent setl invreadonly<CR>\|:setl readonly?<CR>
@@ -185,8 +181,8 @@ nmap <S-C-F2> <Plug>MarksLoc
 "
 " This is obsolete in ver6.2 -- use new option 'autochdir'.
 
-autocmd QuickFixCmdPost [^l]* nested cwindow 5
-autocmd QuickFixCmdPost l*    nested lwindow 5
+autocmd QuickFixCmdPost [^l]* nested cwindow 8
+autocmd QuickFixCmdPost l*    nested lwindow 8
 
 """" filetypes """"
 
