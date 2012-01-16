@@ -22,7 +22,7 @@ export TZ=Asia/Tokyo
 # export XMODIFIERS="@im=uim"
 
 # Go Programming Language http://golang.org/doc/install.html
-export GOROOT=${HOME}/go
+export GOROOT=${HOME}/3rdPartyRepos/go
 # export GOOS=linux
 # export GOARCH=386
 export GOBIN=${HOME}/gobin
