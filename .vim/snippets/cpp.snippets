@@ -1,0 +1,60 @@
+snippet a
+	auto
+snippet cl
+	#pragma once
+
+	#include <memory>
+
+	class ${1:CLASSNAME}
+	{
+	public:
+	    $1();
+	    virtual ~$1();
+	private:
+	    $1($1 const&) = delete;
+	    $1($1&&) = delete;
+	    $1& operator=($1 const&) = delete;
+	    $1& operator=($1&&) = delete;
+
+	    class Impl;
+	    const std::unique_ptr<Impl> pimpl;
+	};
+snippet cerr
+	std::cerr << $1 << std::endl;
+snippet cout
+	std::cout << $1 << std::endl;
+snippet impl
+	//// impl class ////
+
+	class ${1:CLASSNAME}::Impl
+	{
+	public:
+	    Impl($1* parent);
+	    ~Impl() = default;
+
+	    $1* ${2:parent_};
+	};
+
+	$1::Impl::Impl($1* parent) : $2{parent} {}
+
+	//// interface class ////
+
+	$1::$1() : pimpl{new Impl{this}} {}
+	$1::~$1() = default;
+
+	// eof
+snippet m
+	map<${1}>${2}
+snippet ms
+	make_shared<${1}>(${2})${3}
+snippet s
+	std::
+snippet sh
+	shared_ptr<${1}>${2}
+snippet st
+	string
+snippet un
+	unique_ptr<${1}>${2}
+snippet v
+	vector<${1}>${2}
+# eof
