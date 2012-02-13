@@ -8,6 +8,7 @@ unfunction -m '*'
 # /usr/bin/test -t 0 && /bin/stty dec stop undef
 /usr/bin/test -t 0 && /bin/stty stop undef
 
+fpath=(~/.zsh/completion $fpath)
 autoload -U compinit zmv
 compinit
 zstyle ':completion:*' list-colors ''

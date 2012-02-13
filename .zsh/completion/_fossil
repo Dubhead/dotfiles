@@ -1,0 +1,62 @@
+#compdef fossil
+
+_fossil() {
+    # local curcontext="$curcontext" state line
+    local context="$context" state line
+    typeset -A opt_args
+
+    _arguments \
+	'1: :->command' \
+	'*: :->options'
+
+    case $state in
+    command)
+	_arguments '1:commands:(add addremove all annotate bisect branch changes clean clone commit diff export extras finfo gdiff help import info init ls merge mv open pull push rebuild remote-url revert rm settings sqlite3 stash status sync tag timeline ui undo update version)'
+    ;;
+    *)
+	case $words[2] in
+	add,annotate)
+	    # compadd "$@" foo bar baz
+	    _files
+	;;
+	addremove)
+	    _arguments '2:options:(--dotfiles --ignore --test)'
+	;;
+	all)
+	    compadd "$@" list ls pull push rebuild sync
+	;;
+	bisect)
+	    compadd "$@" bad good next options reset vlist
+	;;
+	branch)
+	    compadd "$@" new list ls
+	;;
+	merge)
+	    _arguments '2:options:(--baseline --detail --binary --nochange --case-sensitive)'
+	;;
+	settings)
+	    compadd "$@" allow-symlinks auto-captcha auto-shun autosync \
+		binary-glob case-sensitive clearsign crnl-glob default-perms \
+		diff-command dont-push empty-dirs editor gdiff-command \
+		gmerge-command http-port https-login ignore-glob localauth \
+		main-branch manifest max-upload mtime-changes pgp-command \
+		proxy relative-paths repo-cksum self-register ssl-ca-location \
+		ssl-identity ssh-command tcl web-browser
+	;;
+	stash)
+	    compadd "$@" save snapshot list pop apply goto drop rm giff gdiff
+	;;
+	tag)
+	    compadd "$@" add cancel find list
+	;;
+	*)
+	    _files
+	;;
+	esac
+    ;;
+    esac
+}
+
+_fossil "$@"
+
+# eof	vim:set syntax=zsh:
