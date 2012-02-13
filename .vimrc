@@ -156,7 +156,8 @@ let g:tagbar_left = 1
 
 " mru.vim
 let MRU_Max_Entries = 30
-let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
+" let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
+let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*\|^/usr/include/\|ci-comment-'
 " let MRU_Window_Height = 16
 " let MRU_Use_Current_Window = 1
 " let MRU_Auto_Close = 0
@@ -188,6 +189,11 @@ autocmd QuickFixCmdPost l*    nested lwindow 8
 
 " filetype indent off
 filetype plugin off
+
+" C++
+autocmd FileType c,cpp inoremap <buffer><expr> = search('\(&\<bar><bar>\<bar>+\<bar>-\<bar>/\<bar>>\<bar><\) \%#', 'bcn')? '<bs>= '
+				\ : search('\(*\<bar>!\)\%#', 'bcn') ? '= '
+				\ : smartchr#one_of(' = ', ' == ', '=')
 
 " Python
 autocmd FileType python setl expandtab
