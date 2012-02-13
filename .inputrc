@@ -6,6 +6,7 @@ set input-meta on
 set output-meta on
 
 set blink-matching-paren on
+set mark-symlinked-directories on
 
 C-r: history-search-backward
 C-s: history-search-forward
