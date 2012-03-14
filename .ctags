@@ -1,8 +1,9 @@
 --exclude=/\.hg/
 --exclude=/\.svn/
 --exclude=/\.git/
---tag-relative=yes
+--extra=+q
 --recurse=yes
+--tag-relative=yes
 --langdef=Scala
 --langmap=Scala:.scala
 --regex-Scala=/^[^\*\/]*class[ \t]*([a-zA-Z0-9_]+)/\1/c,classes/
