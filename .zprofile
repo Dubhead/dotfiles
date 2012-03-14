@@ -25,6 +25,6 @@ export TZ=Asia/Tokyo
 export GOROOT=${HOME}/3rdPartyRepos/go
 # export GOOS=linux
 # export GOARCH=386
-export GOBIN=${HOME}/gobin
+# export GOBIN=${HOME}/gobin	# It's now ~/3rdPartyRepos/go/bin
 
 # eof
