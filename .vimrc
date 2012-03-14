@@ -212,10 +212,10 @@ autocmd FileType go setl noexpandtab formatprg=$GOBIN/gofmt makeprg=$GOBIN/8g\ %
 " let hs_allow_hash_operator = 1
 
 " Vala http://live.gnome.org/Vala/Vim
-" autocmd BufRead *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-" autocmd BufRead *.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-" au BufRead,BufNewFile *.vala setfiletype vala
-" au BufRead,BufNewFile *.vapi setfiletype vala
+" autocmd BufRead *.vala,*.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+" au BufRead,BufNewFile *.vala,*.vapi setfiletype vala
+" let vala_no_trail_space_error = 1
+" let vala_no_tab_space_error = 1
 
 " Mono C#
 " autocmd FileType cs compiler mcs
