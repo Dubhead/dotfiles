@@ -11,14 +11,16 @@ snippet cl
 	    $1();
 	    virtual ~$1();
 	private:
-	    $1($1 const&) = delete;
+	    $1(const $1&) = delete;
 	    $1($1&&) = delete;
-	    $1& operator=($1 const&) = delete;
+	    $1& operator=(const $1&) = delete;
 	    $1& operator=($1&&) = delete;
 
 	    class Impl;
 	    const std::unique_ptr<Impl> pimpl;
 	};
+
+	// eof
 snippet cerr
 	std::cerr << ${1} << std::endl;
 snippet cout
