@@ -24,6 +24,7 @@ set cedit=<Esc>
 set cinoptions=:0,l1,g0,N-s,(s
 " set directory=c:\\tmp,.
 set clipboard+=unnamed
+set complete=.,b,t
 set directory=/tmp,.,~/
 set nofoldenable
 set formatoptions=
@@ -55,7 +56,7 @@ set suffixes=.o,.orig,.pyc,.pyo,.beam,.class,.exe,.8,.di
 set tags=./tags;
 set tildeop
 set viminfo=!,'0,<0,@0,f0,h    " '!' for mru.vim
-set wildignore+=*.o
+set wildignore+=*.o,*/.git/*,*/.hg/*,*/.svn/*
 set wildmode=list:longest
 set winfixheight
 set nowrapscan
@@ -147,21 +148,17 @@ runtime ftplugin/man.vim
 " QuickBuf http://www.vim.org/scripts/download_script.php?src_id=7198
 let g:qb_hotkey = "_"
 
-" taglist.vim
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-" let Tlist_Inc_Winwidth = 0
-
 " tagbar.vim
 let g:tagbar_left = 1
 
-" mru.vim
-let MRU_Max_Entries = 30
-" let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
-let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*\|^/usr/include/\|ci-comment-'
-" let MRU_Window_Height = 16
-" let MRU_Use_Current_Window = 1
-" let MRU_Auto_Close = 0
-let MRU_Add_Menu = 0
+" " mru.vim
+" let MRU_Max_Entries = 30
+" " let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
+" let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*\|^/usr/include/\|ci-comment-'
+" " let MRU_Window_Height = 16
+" " let MRU_Use_Current_Window = 1
+" " let MRU_Auto_Close = 0
+" let MRU_Add_Menu = 0
 
 " mark_tools.vim
 " http://www.vim.org/scripts/script.php?script_id=2929
@@ -170,6 +167,43 @@ nmap <F2> <Plug>NextMarkPos
 nmap <S-F2> <Plug>PrevMarkPos
 nmap <S-C-F2> <Plug>MarksLoc
 " let toggle_marks_wrap_search = -1
+
+" " CtrlP
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+" let g:ctrlp_map = '_'
+" let g:ctrlp_cmd = 'CtrlPBuffer'
+" " let g:ctrlp_by_filename = 1
+" " let g:ctrlp_working_path_mode = 1
+" let g:ctrlp_root_markers = ['.fslckout']
+" let g:ctrlp_clear_cache_on_exit = 0
+" " let g:ctrlp_default_input = 1
+
+
+"""" Spaces Around Equals """"
+
+let s:sae_no_space_before_equal = split('-!~=+*/&|<>%', '\zs')
+
+function! Sae()
+    if col(".") < 3
+	return "="
+    endif
+
+    let prevchar = getline(".")[col(".") - 2]
+    if prevchar == " "
+	let prevprevchar = getline(".")[col(".") - 3]
+	if index(s:sae_no_space_before_equal, prevprevchar) == -1
+	    return "= "
+	else
+	    return "\<BS>= "
+	endif
+    endif
+
+    if index(s:sae_no_space_before_equal, prevchar) == -1
+	return " = "
+    else
+	return "= "
+    endif
+endfunction
 
 """" hooks """"
 
@@ -186,15 +220,14 @@ nmap <S-C-F2> <Plug>MarksLoc
 autocmd QuickFixCmdPost [^l]* nested cwindow 8
 autocmd QuickFixCmdPost l*    nested lwindow 8
 
+autocmd BufRead,BufNewFile *.{c,cpp,cc,h} inoremap <expr> = Sae()
+
 """" filetypes """"
 
 " filetype indent off
 filetype plugin off
 
 " C++
-autocmd FileType c,cpp inoremap <buffer><expr> = search('\(&\<bar><bar>\<bar>+\<bar>-\<bar>/\<bar>>\<bar><\) \%#', 'bcn')? '<bs>= '
-				\ : search('\(*\<bar>!\)\%#', 'bcn') ? '= '
-				\ : smartchr#one_of(' = ', ' == ', '=')
 
 " Python
 autocmd FileType python setl expandtab
