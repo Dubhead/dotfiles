@@ -54,8 +54,8 @@
       ((("y" "t"). ())("よって" "ヨッテ" "ヨッテ"))
     )
     ja-rk-rule-basic))	; ja-rk-rule
+(define skk-ja-rk-rule ja-rk-rule-basic)
 (ja-rk-rule-update)
-(define skk-ja-rk-rule (append ja-rk-rule-basic ja-rk-rule-additional))
 
 (define skk-egg-like-newline #t)
 
