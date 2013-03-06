@@ -29,7 +29,8 @@ set directory=/tmp,.,~/
 set nofoldenable
 set formatoptions=
 " set grepprg=internal
-set grepprg=/usr/bin/ack\ -H\ --column\ --nocolor\ --nogroup
+" set grepprg=/usr/bin/ack\ -H\ --column\ --nocolor\ --nogroup
+set grepprg=/usr/local/bin/ag\ --nogroup\ --nocolor\ --column
 set grepformat=%f:%l:%c:%m
 set history=50
 set hidden
