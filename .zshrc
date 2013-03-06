@@ -8,6 +8,10 @@ unfunction -m '*'
 # /usr/bin/test -t 0 && /bin/stty dec stop undef
 /usr/bin/test -t 0 && /bin/stty stop undef
 
+if [ -f /etc/profile.d/autojump.zsh ]; then
+    source /etc/profile.d/autojump.zsh
+fi
+
 fpath=(~/.zsh/completion $fpath)
 autoload -U compinit zmv
 compinit
@@ -76,7 +80,8 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # aliases and functions
 #
-alias clang++11='/usr/local/bin/clang++ -std=c++11'
+alias clang++11='/usr/bin/clang++ -std=c++11'
+alias cmake-rel='/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug'
 alias date='/bin/date --rfc-3339=seconds'
 # alias em='/usr/local/bin/emacsclient'
 alias g++11='/usr/bin/g++ -std=c++0x'
