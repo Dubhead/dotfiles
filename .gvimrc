@@ -3,8 +3,8 @@
 let c_comment_strings=1
 
 set columns=80
+set lines=62
 set guicursor=a:blinkon0
-set lines=24
 set mousehide
 set mousemodel=popup_setpos
 
