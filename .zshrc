@@ -34,6 +34,7 @@ SAVEHIST=10000
 WORDCHARS="${WORDCHARS:s#/#}|"
 
 REPORTTIME=3
+TIMEFMT="%J: %U user, %S kernel, %MM memory"
 
 if [[ $DISPLAY == ":0.0" ]]; then
         # chpwd () { print -Pn "\e]0;%3~ - %m - mlterm\a"}
@@ -81,7 +82,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # aliases and functions
 #
 alias clang++11='/usr/bin/clang++ -std=c++11'
-alias cmake-rel='/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug'
+alias cmake-debug='/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug'
 alias date='/bin/date --rfc-3339=seconds'
 # alias em='/usr/local/bin/emacsclient'
 alias g++11='/usr/bin/g++ -std=c++0x'
