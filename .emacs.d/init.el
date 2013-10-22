@@ -75,15 +75,13 @@
     (if (one-window-p)
 	(split-window-vertically)
       (delete-other-windows))))
-; (global-set-key (kbd "C-2")
-; 		'(lambda ()
-; 		   (interactive)
-; 		   (if (one-window-p)
-; 		       (progn
-; 			 (split-window-vertically)
-; 			 (other-window 1))
-; 		     (delete-window))))
-;
+(global-set-key (kbd "C-2") '(lambda ()
+		   (interactive)
+		   (if (one-window-p)
+		       (progn
+			 (split-window-vertically)
+			 (other-window 1))
+		     (delete-window))))
 (global-set-key (kbd "C-3") 'shrink-window-if-larger-than-buffer)
 (global-set-key (kbd "C-4")		; toggle selective-display
  '(lambda ()
