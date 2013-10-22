@@ -101,7 +101,7 @@ l () {
 # alias ls='LANG=POSIX /bin/ls -FG --group-directories-first --color=auto'
 alias ls='/bin/ls -FG --group-directories-first --color=auto'
 alias man='LANG=C /usr/bin/man'
-alias myps='/bin/ps axo stat,ppid,pid,cmd 2>&1 | /usr/bin/less'
+alias myps='/bin/ps axwwfo stat,user,pid,pcpu,pmem,cmd 2>&1 | /usr/bin/less'
 orig () {
         for i in $*; do
                 /bin/cp -p ${i} ${i}.orig
