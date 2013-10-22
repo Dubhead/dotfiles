@@ -27,6 +27,7 @@ set clipboard+=unnamed
 set complete=.,b,t
 set directory=/tmp,.,~/
 set nofoldenable
+set foldmethod=indent
 set formatoptions=
 " set grepprg=internal
 " set grepprg=/usr/bin/ack\ -H\ --column\ --nocolor\ --nogroup
@@ -221,7 +222,7 @@ endfunction
 autocmd QuickFixCmdPost [^l]* nested cwindow 8
 autocmd QuickFixCmdPost l*    nested lwindow 8
 
-autocmd BufRead,BufNewFile *.{c,cpp,cc,h} inoremap <expr> = Sae()
+autocmd BufRead,BufNewFile *.{c,cpp,cc,h} inoremap <buffer> <expr> = Sae()
 
 """" filetypes """"
 
