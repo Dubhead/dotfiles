@@ -1,5 +1,11 @@
 " ~/.vimrc
 
+"""" Vundle """"
+
+source <sfile>:h/vundle-init.vim
+filetype on
+filetype plugin off
+
 """" language settings """"
 
 let $LANG = "en_US.UTF-8"
@@ -180,6 +186,10 @@ nmap <S-C-F2> <Plug>MarksLoc
 " let g:ctrlp_clear_cache_on_exit = 0
 " " let g:ctrlp_default_input = 1
 
+" snipMate
+" We don't need the stock snippets.
+let g:snippets_dir = "~/.vim/snippets/"
+
 
 """" Spaces Around Equals """"
 
@@ -225,9 +235,6 @@ autocmd QuickFixCmdPost l*    nested lwindow 8
 autocmd BufRead,BufNewFile *.{c,cpp,cc,h} inoremap <buffer> <expr> = Sae()
 
 """" filetypes """"
-
-" filetype indent off
-filetype plugin off
 
 " C++
 
