@@ -24,7 +24,9 @@ Bundle 'gmarik/vundle'
 
 " plugins at GitHub
 Bundle 'msanders/snipmate.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'Blackrush/vim-gocode'
+" Bundle 'Townk/vim-autoclose'
 
 " plugins at www.vim.org
 Bundle 'mark_tools'
