@@ -15,3 +15,8 @@
 --regex-Scala=/^[^\*\/]*val[ \t]*([a-zA-Z0-9_]+)[ \t]*[:=]/\1/V,values/
 --regex-Scala=/^[^\*\/]*var[ \t]*([a-zA-Z0-9_]+)[ \t]*[:=]/\1/v,variables/
 --regex-Scala=/^[^\*\/]*type[ \t]*([a-zA-Z0-9_]+)[ \t]*[\[<>=]/\1/T,types/
+--langdef=Go
+--langmap=Go:.go
+--regex-Go=/func([ \t]+\([^)]+\))?[ \t]+([a-zA-Z0-9_]+)/\2/f,func/
+--regex-Go=/var[ \t]+([a-zA-Z_][a-zA-Z0-9_]+)/\1/v,var/
+--regex-Go=/type[ \t]+([a-zA-Z_][a-zA-Z0-9_]+)/\1/t,type/

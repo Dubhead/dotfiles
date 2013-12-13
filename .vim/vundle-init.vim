@@ -24,6 +24,7 @@ Bundle 'gmarik/vundle'
 
 " plugins at GitHub
 Bundle 'msanders/snipmate.vim'
+Bundle 'Blackrush/vim-gocode'
 
 " plugins at www.vim.org
 Bundle 'mark_tools'

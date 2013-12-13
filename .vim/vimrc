@@ -3,8 +3,8 @@
 """" Vundle """"
 
 source <sfile>:h/vundle-init.vim
-filetype on
-filetype plugin off
+filetype plugin on
+filetype indent off
 
 """" language settings """"
 
@@ -179,10 +179,10 @@ nmap <S-C-F2> <Plug>MarksLoc
 " " CtrlP
 " set runtimepath^=~/.vim/bundle/ctrlp.vim
 " let g:ctrlp_map = '_'
-" let g:ctrlp_cmd = 'CtrlPBuffer'
+let g:ctrlp_cmd = 'CtrlPMixed'
 " " let g:ctrlp_by_filename = 1
-" " let g:ctrlp_working_path_mode = 1
-" let g:ctrlp_root_markers = ['.fslckout']
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['.fslckout']
 " let g:ctrlp_clear_cache_on_exit = 0
 " " let g:ctrlp_default_input = 1
 
@@ -232,7 +232,7 @@ endfunction
 autocmd QuickFixCmdPost [^l]* nested cwindow 8
 autocmd QuickFixCmdPost l*    nested lwindow 8
 
-autocmd BufRead,BufNewFile *.{c,cpp,cc,h} inoremap <buffer> <expr> = Sae()
+autocmd BufRead,BufNewFile *.{c,cpp,cc,h,go} inoremap <buffer> <expr> = Sae()
 
 """" filetypes """"
 
@@ -244,7 +244,12 @@ let python_highlight_all = 1    " See syntax/python.vim
 
 " Go
 autocmd BufRead,BufNewFile *.go setfiletype go
-autocmd FileType go setl noexpandtab formatprg=$GOBIN/gofmt makeprg=$GOBIN/8g\ % shiftwidth=8
+autocmd FileType go
+	\ setl noexpandtab shiftwidth=8|
+	\ noremap <silent> ]] :<C-u>call search("^\\(func\\\\|type\\)")<CR>|
+	\ noremap <silent> [[ :<C-u>call search("^\\(func\\\\|type\\)", 'b')<CR>
+let g:gocode_gofmt_tabs=" -tabs=true "
+let g:gocode_gofmt_tabwidth=" -tabwidth=8 "
 
 " Haskell
 " let hs_highlight_delimiters = 1

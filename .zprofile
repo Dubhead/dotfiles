@@ -22,7 +22,9 @@ export TZ=Asia/Tokyo
 # export XMODIFIERS="@im=uim"
 
 # Go Programming Language http://golang.org/doc/install.html
-export GOROOT=/usr/local/go
+# export GOROOT=/usr/lib64/golang
+export GOROOT=/usr/local/go1.2
+export GOPATH=/home/miura/Golang
 # export GOOS=linux
 # export GOARCH=386
 # export GOBIN=/usr/local/go/bin
