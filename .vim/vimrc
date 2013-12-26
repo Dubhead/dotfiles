@@ -51,7 +51,7 @@ set nrformats=hex,alpha
 set noruler
 " set scrolloff=2
 set secure
-set sessionoptions=options,curdir,winpos,resize,winsize
+set sessionoptions=buffers,options,resize,winsize
 set shiftround
 set shiftwidth=4
 set shortmess=aoOtI
@@ -63,7 +63,7 @@ set noshowmode
 set suffixes=.o,.orig,.pyc,.pyo,.beam,.class,.exe,.8,.di
 set tags=./tags;
 set tildeop
-set viminfo=!,'0,<0,@0,f0,h    " '!' for mru.vim
+set viminfo=!,%,'0,/0,:0,<0,@0,f0,h    " '!' for mru.vim
 set wildignore+=*.o,*/.git/*,*/.hg/*,*/.svn/*
 set wildmode=list:longest
 set winfixheight
@@ -158,6 +158,33 @@ let g:qb_hotkey = "_"
 
 " tagbar.vim
 let g:tagbar_left = 1
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " " mru.vim
 " let MRU_Max_Entries = 30
@@ -188,6 +215,21 @@ let g:ctrlp_root_markers = ['.fslckout']
 " snipMate
 " We don't need the stock snippets.
 let g:snippets_dir = "~/.vim/snippets/"
+
+" startify
+let g:startify_bookmarks = [
+    \ '~/.vim/vimrc',
+    \ ]
+let g:startify_session_persistence = 0
+let g:startify_skiplist = [
+    \ '^/tmp',
+    \ ]
+let g:startify_session_savevars = [
+    \ 'g:startify_session_savevars',
+    \ 'g:startify_session_savecmds',
+    \ ]
+let g:startify_custom_footer = 'Startify commands: :SLoad, SSave, SDelete, :Startify'
+let g:ctrlp_reuse_window = 'startify'	" from startify FAQ
 
 
 """" Spaces Around Equals """"

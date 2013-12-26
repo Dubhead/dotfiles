@@ -23,14 +23,16 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " plugins at GitHub
+Bundle 'yegappan/mru'
 Bundle 'msanders/snipmate.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Blackrush/vim-gocode'
 " Bundle 'Townk/vim-autoclose'
+Bundle 'majutsushi/tagbar'
+Bundle 'mhinz/vim-startify'
 
 " plugins at www.vim.org
 Bundle 'mark_tools'
-Bundle 'mru.vim'
 " Bundle 'QuickBuf' -- This contains bugs; use my modified version.
 
 " other Git repositories
