@@ -23,7 +23,7 @@ export TZ=Asia/Tokyo
 
 # Go Programming Language http://golang.org/doc/install.html
 # export GOROOT=/usr/lib64/golang
-export GOROOT=/usr/local/go1.2
+export GOROOT=/usr/local/go
 export GOPATH=/home/miura/Golang
 # export GOOS=linux
 # export GOARCH=386
