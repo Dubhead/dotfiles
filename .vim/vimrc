@@ -110,7 +110,7 @@ inoremap <silent> <C-B> <END>{<ESC>:call setline(".", substitute(getline("."), "
 inoremap <M-u> <Esc>gUiw`]a
 inoremap <M-c> <ESC>bgUllgue`^a
 
-" do :grep for the word under cursor
+" Do :grep for the word under cursor.
 nnoremap <F8> :grep -w <cword><CR>
 
 " Save all modified, and run make.
@@ -139,10 +139,13 @@ cnoremap <Esc><C-F> <S-Right>
 nnoremap <silent> ) :<C-u>call search("\\((\\\\|\\[\\\\|{\\\\|<\\\\|「\\\\|『\\)\\zs")<CR>
 nnoremap <silent> ( :<C-u>call search("\\((\\\\|\\[\\\\|{\\\\|<\\\\|「\\\\|『\\)\\zs", 'b')<CR>
 
+" Go to the right-hand-side of an assignment.
+noremap <silent> = 0:<C-u>call search("=")<CR>w
+
 " Change currend word to yanked text.
-nnoremap <silent> cy ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
-vnoremap <silent> cy c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
-nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+" nnoremap <silent> cy ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+" vnoremap <silent> cy c<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+" nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 
 " split and join
 nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zpJk:s/\v +$//<cr>:noh<cr>j^
@@ -216,47 +219,9 @@ let g:ctrlp_root_markers = ['.fslckout']
 " We don't need the stock snippets.
 let g:snippets_dir = "~/.vim/snippets/"
 
-" startify
-let g:startify_bookmarks = [
-    \ '~/.vim/vimrc',
-    \ ]
-let g:startify_session_persistence = 0
-let g:startify_skiplist = [
-    \ '^/tmp',
-    \ ]
-let g:startify_session_savevars = [
-    \ 'g:startify_session_savevars',
-    \ 'g:startify_session_savecmds',
-    \ ]
-let g:startify_custom_footer = 'Startify commands: :SLoad, SSave, SDelete, :Startify'
-let g:ctrlp_reuse_window = 'startify'	" from startify FAQ
-
-
-"""" Spaces Around Equals """"
-
-let s:sae_no_space_before_equal = split('-!~=+*/&|<>%:', '\zs')
-
-function! Sae()
-    if col(".") < 3
-	return "="
-    endif
-
-    let prevchar = getline(".")[col(".") - 2]
-    if prevchar == " "
-	let prevprevchar = getline(".")[col(".") - 3]
-	if index(s:sae_no_space_before_equal, prevprevchar) == -1
-	    return "= "
-	else
-	    return "\<BS>= "
-	endif
-    endif
-
-    if index(s:sae_no_space_before_equal, prevchar) == -1
-	return " = "
-    else
-	return "= "
-    endif
-endfunction
+" smartinput
+let g:smartinput_no_default_key_mappings = 1
+source <sfile>:h/smartinput-defs.vim
 
 """" hooks """"
 
@@ -273,7 +238,7 @@ endfunction
 autocmd QuickFixCmdPost [^l]* nested cwindow 8
 autocmd QuickFixCmdPost l*    nested lwindow 8
 
-autocmd BufRead,BufNewFile *.{c,cpp,cc,h,go} inoremap <buffer> <expr> = Sae()
+" autocmd BufRead,BufNewFile *.{c,cpp,cc,h,go} inoremap <buffer> <expr> = Sae()
 
 """" filetypes """"
 

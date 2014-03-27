@@ -29,7 +29,11 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Blackrush/vim-gocode'
 " Bundle 'Townk/vim-autoclose'
 Bundle 'majutsushi/tagbar'
-Bundle 'mhinz/vim-startify'
+" Bundle 'mhinz/vim-startify'
+Bundle 'kana/vim-smartinput'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-sleuth'
+Bundle 'tpope/vim-characterize'
 
 " plugins at www.vim.org
 Bundle 'mark_tools'
