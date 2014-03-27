@@ -140,14 +140,14 @@
 (global-set-key (kbd "C-w") 'my-ctrl-w)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(auto-save-default nil)
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(auto-image-file-mode t)
+ '(auto-save-default nil)
  '(backup-directory-alist (quote (("." . "/tmp"))))
- '(backup-inhibited t)
+ '(backup-inhibited t t)
  '(backward-delete-char-untabify-method nil)
  '(blink-cursor-mode nil)
  '(c-basic-offset 4)
@@ -160,13 +160,14 @@
  '(frame-title-format (quote (buffer-file-name "%f - Emacs" ("%b - Emacs"))) t)
  '(global-font-lock-mode t nil (font-lock))
  '(indicate-empty-lines t)
+ '(inhibit-startup-echo-area-message "miura")
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(line-move-visual nil)
  '(line-number-mode nil)
  '(menu-bar-mode nil)
  '(require-final-newline (quote ask))
- '(scroll-bar-mode 'left)
+ '(scroll-bar-mode (quote left))
  '(scroll-conservatively 101)
  '(show-paren-mode t nil (paren))
  '(show-paren-style (quote expression))
@@ -180,10 +181,10 @@
  '(view-read-only t)
  '(x-stretch-cursor t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 88 :width normal :foundry "unknown" :family "Liberation Sans"))))
  '(highlight-changes ((((class color)) (:background "LightCyan1"))))
  '(highlight-changes-delete ((((class color)) (:background "LightCyan1" :underline t)))))
