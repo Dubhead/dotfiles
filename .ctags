@@ -4,19 +4,14 @@
 --extra=+q
 --recurse=yes
 --tag-relative=yes
---langdef=Scala
---langmap=Scala:.scala
---regex-Scala=/^[^\*\/]*class[ \t]*([a-zA-Z0-9_]+)/\1/c,classes/
---regex-Scala=/^[^\*\/]*object[ \t]*([a-zA-Z0-9_]+)/\1/o,objects/
---regex-Scala=/^[^\*\/]*trait[ \t]*([a-zA-Z0-9_]+)/\1/t,traits/
---regex-Scala=/^[^\*\/]*case[ \t]*class[ \t]*([a-zA-Z0-9_]+)/\1/m,case-classes/
---regex-Scala=/^[^\*\/]*abstract[ \t]*class[ \t]*([a-zA-Z0-9_]+)/\1/a,abstract-classes/
---regex-Scala=/^[^\*\/]*def[ \t]*([a-zA-Z0-9_]+)[ \t]*.*[:=]/\1/f,functions/
---regex-Scala=/^[^\*\/]*val[ \t]*([a-zA-Z0-9_]+)[ \t]*[:=]/\1/V,values/
---regex-Scala=/^[^\*\/]*var[ \t]*([a-zA-Z0-9_]+)[ \t]*[:=]/\1/v,variables/
---regex-Scala=/^[^\*\/]*type[ \t]*([a-zA-Z0-9_]+)[ \t]*[\[<>=]/\1/T,types/
---langdef=Go
---langmap=Go:.go
---regex-Go=/func([ \t]+\([^)]+\))?[ \t]+([a-zA-Z0-9_]+)/\2/f,func/
---regex-Go=/var[ \t]+([a-zA-Z_][a-zA-Z0-9_]+)/\1/v,var/
---regex-Go=/type[ \t]+([a-zA-Z_][a-zA-Z0-9_]+)/\1/t,type/
+--langdef=Rust
+--langmap=Rust:.rs
+--regex-Rust=/^[ \t]*(#\[[^\]]\][ \t]*)*(pub[ \t]+)?(extern[ \t]+)?("[^"]+"[ \t]+)?(unsafe[ \t]+)?fn[ \t]+([a-zA-Z0-9_]+)/\6/f,functions,function definitions/
+--regex-Rust=/^[ \t]*(pub[ \t]+)?type[ \t]+([a-zA-Z0-9_]+)/\2/T,types,type definitions/
+--regex-Rust=/^[ \t]*(pub[ \t]+)?enum[ \t]+([a-zA-Z0-9_]+)/\2/g,enum,enumeration names/
+--regex-Rust=/^[ \t]*(pub[ \t]+)?struct[ \t]+([a-zA-Z0-9_]+)/\2/s,structure names/
+--regex-Rust=/^[ \t]*(pub[ \t]+)?mod[ \t]+([a-zA-Z0-9_]+)/\2/m,modules,module names/
+--regex-Rust=/^[ \t]*(pub[ \t]+)?static[ \t]+([a-zA-Z0-9_]+)/\2/c,consts,static constants/
+--regex-Rust=/^[ \t]*(pub[ \t]+)?trait[ \t]+([a-zA-Z0-9_]+)/\2/t,traits,traits/
+--regex-Rust=/^[ \t]*(pub[ \t]+)?impl([ \t\n]+<.*>)?[ \t]+([a-zA-Z0-9_]+)/\3/i,impls,trait implementations/
+--regex-Rust=/^[ \t]*macro_rules![ \t]+([a-zA-Z0-9_]+)/\1/d,macros,macro definitions/
