@@ -249,8 +249,9 @@ autocmd FileType python setl expandtab
 let python_highlight_all = 1    " See syntax/python.vim
 
 " Go
-autocmd BufRead,BufNewFile *.go setfiletype go
+" autocmd BufRead,BufNewFile *.go setfiletype go
 autocmd FileType go
+	\ filetype indent off|
 	\ setl noexpandtab shiftwidth=8|
 	\ noremap <silent> ]] :<C-u>call search("^\\(func\\\\|type\\)")<CR>|
 	\ noremap <silent> [[ :<C-u>call search("^\\(func\\\\|type\\)", 'b')<CR>

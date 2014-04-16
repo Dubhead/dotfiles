@@ -34,6 +34,7 @@ Bundle 'kana/vim-smartinput'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-sleuth'
 Bundle 'tpope/vim-characterize'
+Bundle 'airblade/vim-gitgutter'
 
 " plugins at www.vim.org
 Bundle 'mark_tools'
