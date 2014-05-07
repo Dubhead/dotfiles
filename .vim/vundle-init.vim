@@ -19,30 +19,32 @@ set nocompatible
 filetype off
 
 set runtimepath+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+call vundle#begin()
+Plugin 'gmarik/vundle'
 
 " plugins at GitHub
-Bundle 'yegappan/mru'
-Bundle 'msanders/snipmate.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Blackrush/vim-gocode'
-" Bundle 'Townk/vim-autoclose'
-Bundle 'majutsushi/tagbar'
-" Bundle 'mhinz/vim-startify'
-Bundle 'kana/vim-smartinput'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-sleuth'
-Bundle 'tpope/vim-characterize'
-Bundle 'airblade/vim-gitgutter'
+" Plugin 'Townk/vim-autoclose'
+" Plugin 'mhinz/vim-startify'
+Plugin 'Blackrush/vim-gocode'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'kana/vim-smartinput'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'msanders/snipmate.vim'
+Plugin 'tpope/vim-characterize'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-sleuth'
+Plugin 'yegappan/mru'
 
 " plugins at www.vim.org
-Bundle 'mark_tools'
-" Bundle 'QuickBuf' -- This contains bugs; use my modified version.
+Plugin 'mark_tools'
+" Plugin 'QuickBuf' -- This contains bugs; use my modified version.
 
 " other Git repositories
-" Bundle 'git://git.example.com/foobar.git'
+" Plugin 'git://git.example.com/foobar.git'
 
+call vundle#end()
 filetype on
 
 " eof
