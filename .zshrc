@@ -8,6 +8,8 @@ unfunction -m '*'
 # /usr/bin/test -t 0 && /bin/stty dec stop undef
 /usr/bin/test -t 0 && /bin/stty stop undef
 
+autoload run-help
+
 if [ -f /etc/profile.d/autojump.zsh ]; then
     source /etc/profile.d/autojump.zsh
 fi
