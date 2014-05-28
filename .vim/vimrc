@@ -243,6 +243,7 @@ autocmd QuickFixCmdPost l*    nested lwindow 8
 """" filetypes """"
 
 " C++
+autocmd FileType cpp setl commentstring=//\ %s
 
 " Python
 autocmd FileType python setl expandtab
