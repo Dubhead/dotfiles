@@ -83,12 +83,12 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # aliases and functions
 #
-alias clang++11='/usr/bin/clang++ -std=c++11'
+alias clang++14='/usr/bin/clang++ -std=c++1y'
 alias cmake-debug='/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug'
 alias date='/bin/date --rfc-3339=seconds'
 # alias em='/usr/local/bin/emacsclient'
 alias flat='/bin/ls -Flat --group-directories-first --color=auto'
-alias g++11='/usr/bin/g++ -std=c++0x'
+alias g++14='/usr/bin/g++ -std=c++1y'
 alias grep='/bin/grep --color=auto -I'
 alias grepr='/bin/grep -n --color=auto -I -r --exclude-dir=.svn --exclude-dir=.git --exclude-dir=.hg'
 alias gvimrem='/usr/bin/gvim --remote-silent'
@@ -101,6 +101,7 @@ l () {
         LC_ALL=POSIX /bin/ls -lhtAFG --time-style=long-iso --color=always $* | /usr/bin/head -20
 }
 # alias ls='LANG=POSIX /bin/ls -FG --group-directories-first --color=auto'
+alias la='/bin/ls -FG --group-directories-first --color=auto -a'
 alias ls='/bin/ls -FG --group-directories-first --color=auto'
 alias man='LANG=C /usr/bin/man'
 alias myps='/bin/ps axwwfo stat,user,pid,pcpu,pmem,cmd 2>&1 | /usr/bin/less'
