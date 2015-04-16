@@ -1,5 +1,7 @@
 " ~/.vimrc
 
+scriptencoding utf-8
+
 """" Vundle """"
 
 source <sfile>:h/vundle-init.vim
@@ -72,12 +74,12 @@ set nowrapscan
 """" display """"
 
 " these should be here, NOT in .gvimrc
-" default: "agimrLtT" (GTK, Motif and Athena)
+" default: "aegimrLtT" (GTK, Motif and Athena)
 set guioptions-=m
 set guioptions-=r
 set guioptions-=L
 set guioptions-=T
-set guioptions+=cl
+set guioptions+=clM
 
 " syntax on
 syntax enable
@@ -91,8 +93,9 @@ colorscheme vc
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$\| \+\ze\t/
 
-" Highlight 'number' column.
+" column colors
 highlight LineNr term=underline ctermbg=3 ctermfg=4 guifg=blue guibg=yellow
+highlight SignColumn guibg=LightGrey
 
 """" maps """"
 
@@ -108,7 +111,7 @@ inoremap <silent> <C-B> <END>{<ESC>:call setline(".", substitute(getline("."), "
 
 " make the last word UPPERCASE or Camelcase.  See :help gU
 inoremap <M-u> <Esc>gUiw`]a
-inoremap <M-c> <ESC>bgUllgue`^a
+" inoremap <M-c> <ESC>bgUllgue`^a
 
 " Do :grep for the word under cursor.
 nnoremap <F8> :grep -w <cword><CR>
@@ -116,13 +119,19 @@ nnoremap <F8> :grep -w <cword><CR>
 " Save all modified, and run make.
 map <F9> :silent wall<CR>\|:make<CR>
 
-" QuickFix list navigation
-map <C-N> :cnext<CR>
-map <C-P> :cprev<CR>
+" navigation for QuickFix list and tag match list
+map ]q :cnext<CR>
+map [q :cprev<CR>
+map ]Q :clast<CR>
+map [Q :cfirst<CR>
+map ]t :tnext<CR>
+map [t :tprevious<CR>
+map ]T :tlast<CR>
+map [T :tfirst<CR>
 
 " Alt-BackSpace to delete last word
-inoremap <M-BS> <C-W>
-noremap <M-BS> db
+" inoremap <M-BS> <C-W>
+" noremap <M-BS> db
 
 " taken from :help emacs-keys
 cnoremap <C-A> <Home>
@@ -148,7 +157,7 @@ noremap <silent> = 0:<C-u>call search("=")<CR>w
 " nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 
 " split and join
-nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zpJk:s/\v +$//<cr>:noh<cr>j^
+" nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zpJk:s/\v +$//<cr>:noh<cr>j^
 
 """" plugins """"
 
@@ -198,13 +207,21 @@ let g:tagbar_type_go = {
 " " let MRU_Auto_Close = 0
 " let MRU_Add_Menu = 0
 
-" mark_tools.vim
-" http://www.vim.org/scripts/script.php?script_id=2929
-nmap <C-F2> <Plug>ToggleMarkAZ
-nmap <F2> <Plug>NextMarkPos
-nmap <S-F2> <Plug>PrevMarkPos
-nmap <S-C-F2> <Plug>MarksLoc
-" let toggle_marks_wrap_search = -1
+"""" " mark_tools.vim
+"""" " http://www.vim.org/scripts/script.php?script_id=2929
+"""" nmap <C-F2> <Plug>ToggleMarkAZ
+"""" nmap <F2> <Plug>NextMarkPos
+"""" nmap <S-F2> <Plug>PrevMarkPos
+"""" nmap <S-C-F2> <Plug>MarksLoc
+"""" " let toggle_marks_wrap_search = -1
+
+" vim-bookmarks (https://github.com/MattesGroeger/vim-bookmarks/)
+let g:bookmark_auto_close = 1
+" let g:bookmark_no_default_key_mappings = 1
+nmap <C-F2> <Plug>BookmarkToggle
+nmap <F2> <Plug>BookmarkNext
+nmap <S-F2> <Plug>BookmarkPrev
+nmap <S-C-F2> <Plug>BookmarkShowAll
 
 " " CtrlP
 " let g:ctrlp_map = '_'
@@ -214,6 +231,8 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['.fslckout']
 " let g:ctrlp_clear_cache_on_exit = 0
 " " let g:ctrlp_default_input = 1
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_use_caching = 0
 
 " snipMate
 " We don't need the stock snippets.
@@ -238,9 +257,10 @@ source <sfile>:h/smartinput-defs.vim
 autocmd QuickFixCmdPost [^l]* nested cwindow 8
 autocmd QuickFixCmdPost l*    nested lwindow 8
 
-" autocmd BufRead,BufNewFile *.{c,cpp,cc,h,go} inoremap <buffer> <expr> = Sae()
-
 """" filetypes """"
+
+" Disable auto-commenting.
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " C++
 autocmd FileType cpp setl commentstring=//\ %s
@@ -300,7 +320,7 @@ set runtimepath+=/home/miura/Golang/src/github.com/nsf/gocode/vim
 " Pure
 autocmd BufRead,BufNewFile *.pure setfiletype pure
 
-" Nimrod
+" Nim / Nimrod
 " autocmd BufRead,BufNewFile *.nim setfiletype nimrod
 
 " Falcon

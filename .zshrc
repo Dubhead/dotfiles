@@ -36,13 +36,13 @@ SAVEHIST=10000
 WORDCHARS="${WORDCHARS:s#/#}|"
 
 REPORTTIME=3
-TIMEFMT="%J: %U user, %S kernel, %MM memory"
+TIMEFMT="[%J] %U user, %S kernel, %MM memory"
 
-if [[ $DISPLAY == ":0.0" ]]; then
+# if [[ $DISPLAY == ":0.0" ]]; then
+if [[ $DISPLAY == ":0" ]]; then
         # chpwd () { print -Pn "\e]0;%3~ - %m - mlterm\a"}
-        # export TERM="xterm-xfree86"
-        export TERM="xterm-color"
-        # export TERM="rxvt"
+        # export TERM="xterm-color"
+        export TERM="xterm-256color"
 fi
 
 # emacs-style keybinds with some mods
@@ -83,7 +83,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # aliases and functions
 #
-alias clang++14='/usr/bin/clang++ -std=c++1y'
+alias clang++11='/usr/bin/clang++ -std=c++11'
 alias cmake-debug='/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug'
 alias date='/bin/date --rfc-3339=seconds'
 # alias em='/usr/local/bin/emacsclient'
@@ -113,6 +113,7 @@ orig () {
 }
 # mytime: user time, system time, real time, and maximum memory usage
 alias mytime="/usr/bin/time -f '%Uu %Ss %er %MkB %C'"
+alias od="/usr/bin/od -A x -t x1z"
 alias pstree='/usr/bin/pstree -paUl'
 if [ -x /usr/bin/trash-put ]; then alias rm='/usr/bin/trash-put';
 else alias rm='/bin/mv --backup=numbered --target-directory=${HOME}/.Trash/';

@@ -1,10 +1,15 @@
 ; .emacs.el
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+; 			 ("marmalade" . "http://marmalade-repo.org/packages/")
+; 			 ("melpa" . "http://melpa.org/packages/")))
+(require 'package)
+(add-to-list 'package-archives
+	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/") t)
 
 (require 'wordcaps)
 
@@ -16,9 +21,10 @@
 
 ; (server-start)	; emacsclient
 
-(require 'iswitchb)
-(iswitchb-mode t)
-(setq iswitchb-buffer-ignore '("^ " "\\*Messages\\*" "\\*Completions\\*"))
+; (require 'iswitchb)
+; (iswitchb-mode t)
+; (setq iswitchb-buffer-ignore '("^ " "\\*Messages\\*" "\\*Completions\\*"))
+(ido-mode t)
 ;
 ; Why does this ignore *scratch*?
 ; (setq iswitchb-buffer-ignore '("^*[A-Z]" "^ "))
@@ -58,7 +64,18 @@
 (global-set-key (kbd "M-[") 'highlight-changes-previous-change)
 (global-set-key (kbd "M-]") 'highlight-changes-next-change)
 (global-set-key (kbd "M-c") 'turn-on-wordcap)
-(global-set-key (kbd "M-o") '(lambda () (interactive) (join-line t)))
+; (global-set-key (kbd "M-o") '(lambda () (interactive) (join-line t)))
+
+(global-set-key (kbd "M-o")
+		; Open a line after the current line if it's non-blank.
+		'(lambda ()
+		   (interactive)
+		   (if (eq (string-match "^\\s-*$" (thing-at-point 'line)) 0)
+		       (progn
+			 (transpose-lines 1)
+			 (end-of-line -1))
+		     (end-of-line)
+		     (newline-and-indent))))
 
 (global-set-key (kbd "C--")
  ; Jump to other window, splitting if necessary.
@@ -122,14 +139,14 @@
 	  (lambda () (define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char)))
 
 (global-highlight-changes-mode t)
-; (add-hook 'after-save-hook 'highlight-changes-rotate-faces)
-(defun my-highlight-changes-remove-highlight (&optional placeholder)
-  "Delete all highlights for changes."
-  (interactive "P")
-  (highlight-changes-remove-highlight (point-min) (point-max))
-  (set-buffer-modified-p nil))
-(add-hook 'after-save-hook
-	  '(lambda () (my-highlight-changes-remove-highlight)))
+;; ; (add-hook 'after-save-hook 'highlight-changes-rotate-faces)
+;; (defun my-highlight-changes-remove-highlight (&optional placeholder)
+;;   "Delete all highlights for changes."
+;;   (interactive "P")
+;;   (highlight-changes-remove-highlight (point-min) (point-max))
+;;   (set-buffer-modified-p nil))
+;; (add-hook 'after-save-hook
+;; 	  '(lambda () (my-highlight-changes-remove-highlight)))
 
 (defun my-ctrl-w (&optional arg)
   "If the region is active, kill it.  Otherwise, kill the last word."
