@@ -84,6 +84,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # aliases and functions
 #
 alias clang++11='/usr/bin/clang++ -std=c++11'
+alias cp='/usr/bin/cp --reflink=auto'
 alias cmake-debug='/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug'
 alias date='/bin/date --rfc-3339=seconds'
 # alias em='/usr/local/bin/emacsclient'
