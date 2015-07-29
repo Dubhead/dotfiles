@@ -29,17 +29,17 @@ set backspace=indent,eol,start
 set backupdir=/tmp,.,~/
 set browsedir=buffer
 set cedit=<Esc>
-set cinoptions=:0,l1,g0,N-s,(s
+set cinoptions=:0,l1,g0,N-s,t0,(s,m0
 " set directory=c:\\tmp,.
 set clipboard+=unnamed
 set complete=.,b,t
 set directory=/tmp,.,~/
 set nofoldenable
 set foldmethod=indent
-set formatoptions=
+set formatoptions-=tcq
+set formatoptions+=Bj
 " set grepprg=internal
-" set grepprg=/usr/bin/ack\ -H\ --column\ --nocolor\ --nogroup
-set grepprg=/usr/bin/ag\ --nogroup\ --nocolor\ --column
+set grepprg=/usr/bin/ag\ --vimgrep
 set grepformat=%f:%l:%c:%m
 set history=50
 set hidden
@@ -159,6 +159,11 @@ noremap <silent> = 0:<C-u>call search("=")<CR>w
 " split and join
 " nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zpJk:s/\v +$//<cr>:noh<cr>j^
 
+"""" commands """"
+
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+	\ | diffthis | wincmd p | diffthis
+
 """" plugins """"
 
 " manpage viewer: See :help Man
@@ -262,6 +267,8 @@ autocmd QuickFixCmdPost l*    nested lwindow 8
 " Disable auto-commenting.
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+autocmd FileType * setlocal nosmartindent
+
 " C++
 autocmd FileType cpp setl commentstring=//\ %s
 
@@ -277,8 +284,8 @@ autocmd FileType go
 	\ noremap <silent> g[ :<C-u>call search("^\\(func\\\\|type\\)", 'b')<CR>
 " let g:gocode_gofmt_tabs=" -tabs=true "
 " let g:gocode_gofmt_tabwidth=" -tabwidth=8 "
-set runtimepath+=$GOROOT/misc/vim
-set runtimepath+=/home/miura/Golang/src/github.com/nsf/gocode/vim
+" set runtimepath+=$GOROOT/misc/vim
+" set runtimepath+=/home/miura/Golang/src/github.com/nsf/gocode/vim
 
 " Haskell
 " let hs_highlight_delimiters = 1
