@@ -29,7 +29,7 @@ set backspace=indent,eol,start
 set backupdir=/tmp,.,~/
 set browsedir=buffer
 set cedit=<Esc>
-set cinoptions=:0,l1,g0,N-s,t0,(s,m0
+set cinoptions=:0,l1,g0,N-s,t0,(s
 " set directory=c:\\tmp,.
 set clipboard+=unnamed
 set complete=.,b,t
@@ -39,7 +39,8 @@ set foldmethod=indent
 set formatoptions-=tcq
 set formatoptions+=Bj
 " set grepprg=internal
-set grepprg=/usr/bin/ag\ --vimgrep
+" set grepprg=/usr/bin/ag\ --vimgrep
+set grepprg=/home/miura/.cargo/bin/rg\ --vimgrep
 set grepformat=%f:%l:%c:%m
 set history=50
 set hidden
@@ -168,7 +169,7 @@ command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
 
 " manpage viewer: See :help Man
 runtime ftplugin/man.vim
-" map K <Leader>K
+map K <Leader>K
 
 " QuickBuf http://www.vim.org/scripts/download_script.php?src_id=7198
 let g:qb_hotkey = "_"
@@ -271,6 +272,9 @@ autocmd FileType * setlocal nosmartindent
 
 " C++
 autocmd FileType cpp setl commentstring=//\ %s
+autocmd FileType c,cpp inoremap <buffer><expr> = search('\(&\<bar><bar>\<bar>+\<bar>-\<bar>/\<bar>>\<bar><\) \%#', 'bcn')? '<bs>= '
+				\ : search('\(*\<bar>!\)\%#', 'bcn') ? '= '
+				\ : smartchr#one_of(' = ', ' == ', '=')
 
 " Python
 autocmd FileType python setl expandtab
@@ -325,15 +329,16 @@ autocmd FileType go
 " autocmd BufRead,BufNewFile *.ooc setfiletype ooc
 
 " Pure
-autocmd BufRead,BufNewFile *.pure setfiletype pure
+" autocmd BufRead,BufNewFile *.pure setfiletype pure
 
 " Nim / Nimrod
 " autocmd BufRead,BufNewFile *.nim setfiletype nimrod
 
 " Falcon
-autocmd BufRead,BufNewFile *.fal setfiletype falcon
+" autocmd BufRead,BufNewFile *.fal setfiletype falcon
 
 " Rust
-autocmd FileType rust setl commentstring=//\ %s
+autocmd FileType rust setl commentstring=//\ %s|
+	\ setl makeprg=cargo\ check\ --color=never\ 2>&1\\\|sed\ -E\ 's/\ \ -->\ //'
 
 " eof

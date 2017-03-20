@@ -10,8 +10,8 @@ unfunction -m '*'
 
 autoload run-help
 
-if [ -f /etc/profile.d/autojump.zsh ]; then
-    source /etc/profile.d/autojump.zsh
+if [ -f /usr/share/autojump/autojump.zsh ]; then
+    source /usr/share/autojump/autojump.zsh
 fi
 
 fpath=(~/.zsh/completion $fpath)
@@ -36,13 +36,12 @@ SAVEHIST=10000
 WORDCHARS="${WORDCHARS:s#/#}|"
 
 REPORTTIME=3
-TIMEFMT="[%J] %U user, %S kernel, %MM memory"
+TIMEFMT="%J: %U user, %S kernel, %MM memory"
 
-# if [[ $DISPLAY == ":0.0" ]]; then
-if [[ $DISPLAY == ":0" ]]; then
+if [[ $DISPLAY == ":0.0" ]]; then
         # chpwd () { print -Pn "\e]0;%3~ - %m - mlterm\a"}
-        # export TERM="xterm-color"
-        export TERM="xterm-256color"
+	# export TERM="xterm-256color"
+        export TERM="xterm-color"
 fi
 
 # emacs-style keybinds with some mods

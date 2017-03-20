@@ -10,7 +10,8 @@ function fish_right_prompt
     set -g __fish_prompt_normal (set_color normal)
   end
   if not set -q __fish_prompt_cwd
-    set -g __fish_prompt_cwd (set_color $fish_color_cwd)
+    # set -g __fish_prompt_cwd (set_color $fish_color_cwd)
+    set -g __fish_prompt_cwd (set_color FFFFFF -b black)
   end
   if not set -q __fish_prompt_error
     set -g __fish_prompt_error (set_color $fish_color_error)
@@ -19,7 +20,7 @@ function fish_right_prompt
     set -g __fish_prompt_hostname (hostname -s)
   end
 
-  echo -n "$__fish_prompt_cwd" (my_prompt_pwd) "$__fish_prompt_normal"
+  echo -n "$__fish_prompt_cwd"(my_prompt_pwd)"$__fish_prompt_normal "
   echo -n "$__fish_prompt_hostname"
   echo -n "$__fish_prompt_error$__fish_prompt_status$__fish_prompt_normal"
 end

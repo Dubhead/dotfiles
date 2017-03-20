@@ -21,17 +21,21 @@ filetype off
 set runtimepath+=~/.vim/bundle/vundle/
 call vundle#begin()
 Plugin 'gmarik/vundle'
+" Plugin 'VundleVim/Vundle'
 
 " plugins at GitHub
+" Plugin 'Townk/vim-autoclose'
+" Plugin 'mhinz/vim-startify'
 " Plugin 'Blackrush/vim-gocode'
-Plugin 'MattesGroeger/vim-bookmarks'
-" Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'kana/vim-smartinput'
+Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'msanders/snipmate.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-characterize'
-" Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-sleuth'
 Plugin 'yegappan/mru'
